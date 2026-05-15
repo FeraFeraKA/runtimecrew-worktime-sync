@@ -1,0 +1,25 @@
+# dependencies
+node_modules/
+
+# frontend build
+dist/
+.vite/
+
+# env
+.env
+.env.local
+.env.*.local
+
+# Java / Gradle
+.gradle/
+build/
+out/
+target/
+
+# IDE
+.idea/
+.vscode/
+.DS_Store
+
+# logs
+*.log
