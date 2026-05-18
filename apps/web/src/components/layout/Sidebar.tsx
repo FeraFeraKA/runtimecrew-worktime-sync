@@ -56,7 +56,7 @@ const AppSidebar = () => {
                   <SidebarMenuButton asChild>
                     <NavLink to={page.path}>
                       <Icon className="size-6" />
-                      <span className="text-base">{page.title}</span>
+                      <span>{page.title}</span>
                     </NavLink>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
@@ -72,7 +72,7 @@ const AppSidebar = () => {
             <AvatarFallback>CN</AvatarFallback>
           </Avatar>
           <div className="flex flex-col">
-            <span>Александр Фёдоров</span>
+            <span className="text-sm">Александр Фёдоров</span>
             <span className="text-sm">alfedorod@outlook.com</span>
           </div>
         </div>
