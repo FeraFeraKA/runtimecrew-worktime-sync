@@ -3,7 +3,7 @@ import type { DashboardResponse } from "../types/dashboard.types";
 export const mockDashboardResponse: DashboardResponse = {
   team: {
     id: "8d3510e7-0e23-4c2e-a3f4-5bb1e38d7c30",
-    name: "Frontend Team",
+    name: "Фронтенд-команда",
   },
 
   period: {
@@ -58,12 +58,20 @@ export const mockDashboardResponse: DashboardResponse = {
     },
   ],
 
-  riskDistribution: {
-    low: 8,
-    medium: 5,
-    high: 12,
-    critical: 30,
-  },
+  riskDistribution: [
+    {
+      key: "critical",
+      count: 5,
+      color: "#dc2626",
+    },
+    {
+      key: "high",
+      count: 12,
+      color: "#ea580c",
+    },
+    { key: "medium", count: 5, color: "#ca8a04" },
+    { key: "low", count: 8, color: "#16a34a" },
+  ],
 
   problematicEmployees: [
     {
@@ -76,14 +84,14 @@ export const mockDashboardResponse: DashboardResponse = {
       timezone: "Europe/Moscow",
       workFormat: "remote",
       actualityScore: 52,
-      riskScore: 91,
+      riskScore: 78,
       severity: "critical",
       mainReason: "37% встреч вне рабочего графика",
       recommendedAction: "Попросить обновить рабочий график",
       daysSinceLastUpdate: 17,
       conflictsCount: 6,
       loadRate: 0.86,
-      statuses: ["outdated_schedule", "outside_working_hours"],
+      status: "Необходимо обновить график",
     },
     {
       employee: {
@@ -95,14 +103,14 @@ export const mockDashboardResponse: DashboardResponse = {
       timezone: "Europe/Moscow",
       workFormat: "hybrid",
       actualityScore: 58,
-      riskScore: 84,
+      riskScore: 72,
       severity: "critical",
       mainReason: "Частые пересечения с личной недоступностью",
       recommendedAction: "Проверить исключения в календаре",
       daysSinceLastUpdate: 12,
       conflictsCount: 5,
       loadRate: 0.78,
-      statuses: ["exception_conflict", "calendar_mismatch"],
+      status: "Есть конфликты с исключениями",
     },
     {
       employee: {
@@ -114,14 +122,14 @@ export const mockDashboardResponse: DashboardResponse = {
       timezone: "Asia/Vladivostok",
       workFormat: "remote",
       actualityScore: 61,
-      riskScore: 76,
+      riskScore: 68,
       severity: "high",
       mainReason: "Разница часовых поясов влияет на встречи",
       recommendedAction: "Сместить командные встречи на 2 часа раньше",
       daysSinceLastUpdate: 9,
       conflictsCount: 4,
       loadRate: 0.72,
-      statuses: ["timezone_conflict"],
+      status: "Конфликты часовых поясов",
     },
     {
       employee: {
@@ -133,14 +141,14 @@ export const mockDashboardResponse: DashboardResponse = {
       timezone: "Europe/Moscow",
       workFormat: "office",
       actualityScore: 64,
-      riskScore: 69,
+      riskScore: 75,
       severity: "high",
       mainReason: "Перегрузка встречами в рабочие дни",
       recommendedAction: "Забронировать focus time в календаре",
       daysSinceLastUpdate: 5,
       conflictsCount: 3,
       loadRate: 0.94,
-      statuses: ["overload_conflict"],
+      status: "Перегрузка встречами",
     },
     {
       employee: {
@@ -152,14 +160,14 @@ export const mockDashboardResponse: DashboardResponse = {
       timezone: "Europe/Samara",
       workFormat: "remote",
       actualityScore: 66,
-      riskScore: 62,
+      riskScore: 70,
       severity: "medium",
       mainReason: "График давно не подтверждался",
       recommendedAction: "Отправить запрос на подтверждение графика",
       daysSinceLastUpdate: 24,
       conflictsCount: 2,
       loadRate: 0.68,
-      statuses: ["outdated_schedule"],
+      status: "Необходимо обновить график",
     },
     {
       employee: {
@@ -171,21 +179,20 @@ export const mockDashboardResponse: DashboardResponse = {
       timezone: "Europe/Moscow",
       workFormat: "hybrid",
       actualityScore: 71,
-      riskScore: 55,
+      riskScore: 65,
       severity: "medium",
       mainReason: "Несовпадение формата работы с офлайн-встречами",
       recommendedAction: "Уточнить дни работы из офиса",
       daysSinceLastUpdate: 8,
       conflictsCount: 2,
       loadRate: 0.57,
-      statuses: ["work_format_mismatch"],
+      status: "Несовпадение формата работы",
     },
   ],
 
   topRecommendations: [
     {
       id: "a9a0063b-4467-417e-9b18-c96c10d42bb2",
-      type: "update_schedule",
       priority: "critical",
       title: "Попросить Ивана обновить график",
       description:
@@ -200,25 +207,17 @@ export const mockDashboardResponse: DashboardResponse = {
         type: "employee",
         employeeId: "d6fd68c7-0a1e-4246-b2c3-d52f599fb183",
       },
-      suggestedAction: {
-        type: "request_schedule_update",
-        label: "Попросить обновить график",
-        payload: {
-          employeeId: "d6fd68c7-0a1e-4246-b2c3-d52f599fb183",
-        },
-      },
+      suggestedActionLabel: "Попросить обновить график",
       expectedEffect: {
         actualityScoreDelta: 15,
         riskScoreDelta: -22,
         conflictsDelta: -4,
         description: "Снизит риск встреч вне рабочего времени.",
       },
-      status: "new",
       createdAt: "2026-05-14T09:30:00Z",
     },
     {
       id: "ca9cc53a-58ad-4826-8d6b-276e4c4d0de5",
-      type: "review_exceptions",
       priority: "critical",
       title: "Проверить исключения Марии",
       description:
@@ -232,25 +231,17 @@ export const mockDashboardResponse: DashboardResponse = {
         type: "employee",
         employeeId: "1f0d36a7-3aa2-4f79-bf6e-e26e8d9f5ef4",
       },
-      suggestedAction: {
-        type: "review_employee_exceptions",
-        label: "Открыть исключения сотрудника",
-        payload: {
-          employeeId: "1f0d36a7-3aa2-4f79-bf6e-e26e8d9f5ef4",
-        },
-      },
+      suggestedActionLabel: "Проверить и скорректировать исключения",
       expectedEffect: {
         actualityScoreDelta: 10,
         riskScoreDelta: -18,
         conflictsDelta: -3,
         description: "Поможет убрать пересечения событий с недоступностью.",
       },
-      status: "new",
       createdAt: "2026-05-14T10:05:00Z",
     },
     {
       id: "089373a7-f456-41e9-9e8c-2f3bc6310678",
-      type: "reschedule_team_meetings",
       priority: "high",
       title: "Сместить командные встречи",
       description:
@@ -264,25 +255,17 @@ export const mockDashboardResponse: DashboardResponse = {
         type: "team",
         teamId: "8d3510e7-0e23-4c2e-a3f4-5bb1e38d7c30",
       },
-      suggestedAction: {
-        type: "shift_recurring_meetings",
-        label: "Сместить встречи",
-        payload: {
-          shiftHours: -2,
-        },
-      },
+      suggestedActionLabel: "Сместить встречи на 2 часа раньше",
       expectedEffect: {
         actualityScoreDelta: 6,
         riskScoreDelta: -12,
         conflictsDelta: -4,
         description: "Уменьшит количество конфликтов из-за часовых поясов.",
       },
-      status: "new",
       createdAt: "2026-05-14T10:40:00Z",
     },
     {
       id: "cc19d57e-d7a8-42cc-bd80-44e2569c7e1f",
-      type: "add_focus_time",
       priority: "high",
       title: "Добавить focus time для Екатерины",
       description:
@@ -293,20 +276,13 @@ export const mockDashboardResponse: DashboardResponse = {
         type: "employee",
         employeeId: "50f8717d-fc8e-41dd-8d32-4d6a0f3c7f94",
       },
-      suggestedAction: {
-        type: "create_focus_time",
-        label: "Добавить focus time",
-        payload: {
-          durationMinutes: 120,
-        },
-      },
+      suggestedActionLabel: "Добавить focus time",
       expectedEffect: {
         actualityScoreDelta: 4,
         riskScoreDelta: -9,
         conflictsDelta: -1,
         description: "Снизит риск перегрузки встречами.",
       },
-      status: "new",
       createdAt: "2026-05-14T11:10:00Z",
     },
   ],

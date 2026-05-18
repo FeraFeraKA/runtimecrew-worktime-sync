@@ -1,9 +1,4 @@
-import type {
-  RecommendationPriority,
-  RecommendationStatus,
-  Severity,
-  WorkFormat,
-} from "./types";
+import type { RecommendationPriority, Severity, WorkFormat } from "./types";
 
 export type DashboardResponse = {
   team: TeamDto;
@@ -43,12 +38,13 @@ export type DashboardKpiDto = {
 
 export type DashboardKpisDto = DashboardKpiDto[];
 
+export type RiskDistributionKey = "critical" | "high" | "medium" | "low";
+
 export type RiskDistributionDto = {
-  low: number;
-  medium: number;
-  high: number;
-  critical: number;
-};
+  key: RiskDistributionKey;
+  count: number;
+  color: string;
+}[];
 
 export type EmployeeDiagnosticSummaryDto = {
   employee: EmployeeShortDto;
@@ -58,6 +54,7 @@ export type EmployeeDiagnosticSummaryDto = {
   workFormat: WorkFormat;
 
   actualityScore: number;
+  riskScore: number;
   severity: Severity;
 
   mainReason: string;
@@ -67,7 +64,7 @@ export type EmployeeDiagnosticSummaryDto = {
   conflictsCount: number;
   loadRate: number;
 
-  statuses: string[];
+  status: string;
 };
 
 export type EmployeeShortDto = {
@@ -78,7 +75,6 @@ export type EmployeeShortDto = {
 
 export type RecommendationDto = {
   id: string;
-  type: string;
   priority: RecommendationPriority;
 
   title: string;
@@ -88,10 +84,9 @@ export type RecommendationDto = {
   evidence: string[];
 
   target: RecommendationTargetDto;
-  suggestedAction: SuggestedActionDto;
+  suggestedActionLabel: string;
   expectedEffect: ExpectedEffectDto;
 
-  status: RecommendationStatus;
   createdAt: string;
 };
 
@@ -101,12 +96,6 @@ export type RecommendationTargetDto = {
   teamId?: string;
   eventId?: string;
   scheduleId?: string;
-};
-
-export type SuggestedActionDto = {
-  type: string;
-  label: string;
-  payload?: Record<string, unknown>;
 };
 
 export type ExpectedEffectDto = {

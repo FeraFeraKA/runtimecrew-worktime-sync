@@ -29,7 +29,7 @@ const TopRecommendations = ({
                 </div>
               </div>
               <div className="flex items-center gap-2">
-                <span>{rec.description + " " + rec.suggestedAction.label}</span>
+                <span>{rec.description + " " + rec.title}</span>
                 <ArrowRightIcon className="justify-self-end shrink-0" />
               </div>
             </div>

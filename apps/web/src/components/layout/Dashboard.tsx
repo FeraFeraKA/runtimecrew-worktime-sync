@@ -29,12 +29,7 @@ const Dashboard = ({
       ))}
       <ProblematicTable problematicEmployees={problematicEmployees} />
       <TopRecommendations topRecommendations={topRecommendations} />
-      <div className="xl:col-span-3 xl:row-span-2 bg-sidebar border flex flex-col flex-1 p-3">
-        <span className="text-xl font-bold text-center">
-          Распределение риска
-        </span>
-        <RiskBarChart />
-      </div>
+      <RiskBarChart riskDistribution={riskDistribution} />
     </section>
   );
 };
