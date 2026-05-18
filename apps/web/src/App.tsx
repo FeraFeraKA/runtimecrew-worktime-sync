@@ -1,10 +1,7 @@
 import { Outlet } from "react-router";
 
-import {
-  SidebarInset,
-  SidebarProvider,
-  SidebarTrigger,
-} from "@/components/ui/sidebar";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import Header from "./components/layout/Header";
 import AppSidebar from "./components/layout/Sidebar";
 
 const AppLayout = () => {
@@ -12,13 +9,9 @@ const AppLayout = () => {
     <SidebarProvider>
       <AppSidebar />
 
-      <SidebarInset>
-        <header className="flex h-16 items-center gap-2 border-b px-4">
-          <SidebarTrigger />
-          <h1 className="text-sm font-medium">HR Dashboard</h1>
-        </header>
-
-        <main className="flex-1 p-4">
+      <SidebarInset className="xl:h-svh min-h-0 overflow-hidden">
+        <Header />
+        <main className="flex flex-col flex-1 min-h-0 min-w-0 overflow-hidden p-4">
           <Outlet />
         </main>
       </SidebarInset>
