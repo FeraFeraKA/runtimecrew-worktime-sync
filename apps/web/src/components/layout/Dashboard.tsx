@@ -1,4 +1,4 @@
-import { ArrowUp, ChartBar } from "lucide-react";
+import { ArrowRightIcon, ArrowUp, ChartBar, User } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Badge } from "../ui/badge";
 import {
@@ -140,8 +140,56 @@ const Dashboard = () => {
           </Table>
         </div>
       </div>
-      <div className="lg:col-span-3 lg:row-span-2 bg-sidebar border flex-1">
-        
+      <div className="lg:col-span-3 lg:row-span-2 bg-sidebar border flex flex-col flex-1 p-3 gap-3.5">
+        <span className="text-xl font-bold">Топ рекомендаций</span>
+        <div className="flex flex-col 2xl:flex-row items-center gap-2">
+          <div className="flex items-center gap-4">
+            <User className="border p-1" size={40} />
+            <Badge variant="outline" className="bg-red-200 text-red-600 p-3">
+              Критический
+            </Badge>
+          </div>
+          <div className="flex items-center gap-4">
+            <span>Попросить Ивана обновить график</span>
+            <ArrowRightIcon className="justify-self-end" />
+          </div>
+        </div>
+        <div className="flex flex-col 2xl:flex-row items-center gap-2">
+          <div className="flex items-center gap-4">
+            <User className="border p-1" size={40} />
+            <Badge variant="outline" className="bg-red-200 text-red-600 p-3">
+              Критический
+            </Badge>
+          </div>
+          <div className="flex items-center gap-4">
+            <span>Попросить Ивана обновить график</span>
+            <ArrowRightIcon className="justify-self-end" />
+          </div>
+        </div>
+        <div className="flex flex-col 2xl:flex-row items-center gap-2">
+          <div className="flex items-center gap-4">
+            <User className="border p-1" size={40} />
+            <Badge variant="outline" className="bg-red-200 text-red-600 p-3">
+              Критический
+            </Badge>
+          </div>
+          <div className="flex items-center gap-4">
+            <span>Попросить Ивана обновить график</span>
+            <ArrowRightIcon className="justify-self-end" />
+          </div>
+        </div>
+        <div className="flex flex-col 2xl:flex-row items-center gap-2">
+          <div className="flex items-center gap-4">
+            <User className="border p-1" size={40} />
+            <Badge variant="outline" className="bg-red-200 text-red-600 p-3">
+              Критический
+            </Badge>
+          </div>
+          <div className="flex items-center gap-4">
+            <span>Попросить Ивана обновить график</span>
+            <ArrowRightIcon className="justify-self-end" />
+          </div>
+        </div>
       </div>
       <div className="lg:col-span-3 lg:row-span-2 bg-sidebar border flex-1"></div>
     </section>
