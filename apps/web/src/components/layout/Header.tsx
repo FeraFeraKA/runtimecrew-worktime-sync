@@ -23,7 +23,7 @@ import { SidebarTrigger } from "../ui/sidebar";
 const Header = () => {
   return (
     <>
-      <header className="flex flex-col lg:flex-row items-center justify-between lg:h-16 p-4 gap-4 border-b bg-sidebar">
+      <header className="flex flex-col lg:flex-row items-center justify-between lg:h-16 p-4 gap-4 border-b bg-sidebar shrink-0">
         <div className="flex items-center gap-4">
           <SidebarTrigger />
           <h1 className="text-2xl font-bold">Дашборд</h1>
