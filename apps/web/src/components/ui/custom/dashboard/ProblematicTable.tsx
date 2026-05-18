@@ -1,4 +1,4 @@
-import { formatSeverity, formatWorkFormat } from "@/lib/format";
+import { formatWorkFormat } from "@/lib/format";
 import { cn } from "@/lib/utils";
 import type { EmployeeDiagnosticSummaryDto } from "@/shared/types/dashboard.types";
 import { Avatar, AvatarFallback, AvatarImage } from "../../avatar";
@@ -11,6 +11,7 @@ import {
   TableHeader,
   TableRow,
 } from "../../table";
+import CustomBadge from "../CustomBadge";
 
 interface IProblematicTableProps {
   problematicEmployees: EmployeeDiagnosticSummaryDto[];
@@ -18,7 +19,7 @@ interface IProblematicTableProps {
 
 const ProblematicTable = ({ problematicEmployees }: IProblematicTableProps) => {
   return (
-    <>
+    <div className="min-w-0 min-h-0 max-h-screen xl:max-h-none overflow-hidden xl:col-span-6 xl:row-span-4 bg-sidebar border flex flex-col h-full">
       <span className="shrink-0 text-center mt-3 mb-1 font-bold text-xl">
         Проблемные сотрудники
       </span>
@@ -68,20 +69,7 @@ const ProblematicTable = ({ problematicEmployees }: IProblematicTableProps) => {
                   {data.actualityScore}%
                 </TableCell>
                 <TableCell>
-                  <Badge
-                    variant="outline"
-                    className={cn(
-                      data.severity === "low"
-                        ? "bg-green-200 text-green-600"
-                        : data.severity === "medium"
-                          ? "bg-yellow-200 text-yellow-600"
-                          : data.severity === "high"
-                            ? "bg-orange-200 text-orange-600"
-                            : "bg-red-200 text-red-600",
-                    )}
-                  >
-                    {formatSeverity(data.severity)}
-                  </Badge>
+                  <CustomBadge severity={data.severity} />
                 </TableCell>
                 <TableCell>{data.mainReason}</TableCell>
                 <TableCell>{data.recommendedAction}</TableCell>
@@ -90,7 +78,7 @@ const ProblematicTable = ({ problematicEmployees }: IProblematicTableProps) => {
           </TableBody>
         </Table>
       </div>
-    </>
+    </div>
   );
 };
 
