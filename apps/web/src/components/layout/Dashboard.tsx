@@ -1,6 +1,7 @@
 import { ArrowRightIcon, ArrowUp, ChartBar, User } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Badge } from "../ui/badge";
+import RiskBarChart from "../ui/custom/RiskBarChart";
 import {
   Table,
   TableBody,
@@ -12,8 +13,8 @@ import {
 
 const Dashboard = () => {
   return (
-    <section className="grid min-h-0 min-w-0 flex-1 overflow-hidden gap-4 lg:grid-cols-9 lg:grid-rows-6">
-      <div className="lg:col-span-3 lg:row-span-1 bg-sidebar border flex flex-col justify-center flex-1 p-3 gap-2">
+    <section className="grid min-h-0 min-w-0 flex-1 overflow-hidden gap-4 xl:grid-cols-9 xl:grid-rows-6">
+      <div className="xl:col-span-3 xl:row-span-1 bg-sidebar border flex flex-col justify-center flex-1 p-3 gap-2">
         <div className="flex items-center justify-between">
           <span>Актуальность команды</span>
           <ChartBar />
@@ -25,7 +26,7 @@ const Dashboard = () => {
           </span>
         </div>
       </div>
-      <div className="lg:col-span-3 lg:row-span-1 bg-sidebar border flex flex-col justify-center flex-1 p-3 gap-2">
+      <div className="xl:col-span-3 xl:row-span-1 bg-sidebar border flex flex-col justify-center flex-1 p-3 gap-2">
         <div className="flex items-center justify-between">
           <span>Актуальность команды</span>
           <ChartBar />
@@ -37,7 +38,7 @@ const Dashboard = () => {
           </span>
         </div>
       </div>
-      <div className="lg:col-span-3 lg:row-span-1 bg-sidebar border flex flex-col justify-center flex-1 p-3 gap-2">
+      <div className="xl:col-span-3 xl:row-span-1 bg-sidebar border flex flex-col justify-center flex-1 p-3 gap-2">
         <div className="flex items-center justify-between">
           <span>Актуальность команды</span>
           <ChartBar />
@@ -49,7 +50,7 @@ const Dashboard = () => {
           </span>
         </div>
       </div>
-      <div className="lg:col-span-3 lg:row-span-1 bg-sidebar border flex flex-col justify-center flex-1 p-3 gap-2">
+      <div className="xl:col-span-3 xl:row-span-1 bg-sidebar border flex flex-col justify-center flex-1 p-3 gap-2">
         <div className="flex items-center justify-between">
           <span>Актуальность команды</span>
           <ChartBar />
@@ -61,7 +62,7 @@ const Dashboard = () => {
           </span>
         </div>
       </div>
-      <div className="lg:col-span-3 lg:row-span-1 bg-sidebar border flex flex-col justify-center flex-1 p-3 gap-2">
+      <div className="xl:col-span-3 xl:row-span-1 bg-sidebar border flex flex-col justify-center flex-1 p-3 gap-2">
         <div className="flex items-center justify-between">
           <span>Актуальность команды</span>
           <ChartBar />
@@ -73,7 +74,7 @@ const Dashboard = () => {
           </span>
         </div>
       </div>
-      <div className="lg:col-span-3 lg:row-span-1 bg-sidebar border flex flex-col justify-center flex-1 p-3 gap-2">
+      <div className="xl:col-span-3 xl:row-span-1 bg-sidebar border flex flex-col justify-center flex-1 p-3 gap-2">
         <div className="flex items-center justify-between">
           <span>Актуальность команды</span>
           <ChartBar />
@@ -85,8 +86,8 @@ const Dashboard = () => {
           </span>
         </div>
       </div>
-      <div className="min-w-0 min-h-0 max-h-screen lg:max-h-none overflow-hidden lg:col-span-6 lg:row-span-4 bg-sidebar border flex flex-col">
-        <span className="shrink-0 text-center mt-3 mb-1">
+      <div className="min-w-0 min-h-0 max-h-screen xl:max-h-none overflow-hidden xl:col-span-6 xl:row-span-4 bg-sidebar border flex flex-col h-full">
+        <span className="shrink-0 text-center mt-3 mb-1 font-bold text-xl">
           Проблемные сотрудники
         </span>
         <div className="min-h-0 flex-1">
@@ -104,7 +105,7 @@ const Dashboard = () => {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {Array.from({ length: 25 }).map((_, i) => (
+              {Array.from({ length: 5 }).map((_, i) => (
                 <TableRow key={i}>
                   <TableCell className="flex items-center gap-2">
                     <Avatar>
@@ -140,8 +141,8 @@ const Dashboard = () => {
           </Table>
         </div>
       </div>
-      <div className="lg:col-span-3 lg:row-span-2 bg-sidebar border flex flex-col flex-1 p-3 gap-3.5">
-        <span className="text-xl font-bold">Топ рекомендаций</span>
+      <div className="xl:col-span-3 xl:row-span-2 bg-sidebar border flex flex-col flex-1 p-3 gap-3.5">
+        <span className="text-xl font-bold text-center">Топ рекомендаций</span>
         <div className="flex flex-col 2xl:flex-row items-center gap-2">
           <div className="flex items-center gap-4">
             <User className="border p-1" size={40} />
@@ -191,7 +192,12 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
-      <div className="lg:col-span-3 lg:row-span-2 bg-sidebar border flex-1"></div>
+      <div className="xl:col-span-3 xl:row-span-2 bg-sidebar border flex flex-col flex-1 p-3">
+        <span className="text-xl font-bold text-center">
+          Распределение риска
+        </span>
+        <RiskBarChart />
+      </div>
     </section>
   );
 };
