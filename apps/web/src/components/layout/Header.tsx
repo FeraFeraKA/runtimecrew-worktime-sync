@@ -1,4 +1,5 @@
 import { Bell } from "lucide-react";
+import { useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { DatePickerWithRange } from "../ui/datepicker";
 import {
@@ -21,6 +22,8 @@ import {
 import { SidebarTrigger } from "../ui/sidebar";
 
 const Header = () => {
+  const [currentTeam, setCurrentTeam] = useState<string | null>(null);
+
   return (
     <>
       <header className="flex flex-col lg:flex-row items-center justify-between lg:h-16 p-4 gap-4 border-b bg-sidebar shrink-0">
@@ -30,7 +33,7 @@ const Header = () => {
         </div>
         <div className="flex flex-col lg:flex-row items-center gap-4">
           <DatePickerWithRange />
-          <Select>
+          <Select onValueChange={(value) => setCurrentTeam(value)}>
             <SelectTrigger className="rounded-xs w-65 bg-background">
               <SelectValue placeholder="Команда..." />
             </SelectTrigger>
