@@ -1,6 +1,6 @@
 "use client";
 
-import { addDays, format } from "date-fns";
+import { format, parseISO } from "date-fns";
 import { CalendarIcon } from "lucide-react";
 import * as React from "react";
 import { type DateRange } from "react-day-picker";
@@ -13,12 +13,18 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { mockDashboardResponse } from "@/shared/mock/dashboard.mock";
+import type { PeriodDto } from "@/shared/types/dashboard.types";
+
+const toDateRange = (period: PeriodDto): DateRange => ({
+  from: parseISO(period.from),
+  to: parseISO(period.to),
+});
 
 export function DatePickerWithRange() {
-  const [date, setDate] = React.useState<DateRange | undefined>({
-    from: new Date(new Date().getFullYear(), 0, 20),
-    to: addDays(new Date(new Date().getFullYear(), 0, 20), 20),
-  });
+  const [date, setDate] = React.useState<DateRange | undefined>(() =>
+    toDateRange(mockDashboardResponse.period),
+  );
 
   return (
     <Field className="mx-auto w-57">
