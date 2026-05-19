@@ -15,3 +15,9 @@ export type ConflictType =
   | "exception_conflict"
   | "overload_conflict"
   | "work_format_mismatch";
+
+export type EmployeeShortDto = {
+  id: string;
+  fullName: string;
+  avatarUrl: string | undefined;
+};

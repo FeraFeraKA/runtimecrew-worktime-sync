@@ -1,6 +1,6 @@
-import { formatWorkFormat } from "@/lib/format";
 import { cn } from "@/lib/utils";
-import type { EmployeeDiagnosticSummaryDto } from "@/shared/types/dashboard.types";
+import { workFormatMeta } from "@/shared/types/dashboard/dashboard.meta";
+import type { EmployeeDiagnosticSummaryDto } from "@/shared/types/dashboard/dashboard.types";
 import { Avatar, AvatarFallback, AvatarImage } from "../../avatar";
 import { Badge } from "../../badge";
 import {
@@ -47,14 +47,17 @@ const ProblematicTable = ({ problematicEmployees }: IProblematicTableProps) => {
                   </Avatar>
                   <span>{data.employee.fullName}</span>
                 </TableCell>
-                <TableCell>{data.role}</TableCell>
-                <TableCell>{data.timezone}</TableCell>
+                <TableCell>{data.roleLabel}</TableCell>
+                <TableCell>{data.timezoneLabel}</TableCell>
                 <TableCell>
                   <Badge
                     variant="outline"
-                    className="bg-blue-200 text-blue-600"
+                    className={cn(
+                      "border-transparent",
+                      workFormatMeta[data.workFormat].badgeClassName,
+                    )}
                   >
-                    {formatWorkFormat(data.workFormat)}
+                    {data.workFormatLabel}
                   </Badge>
                 </TableCell>
                 <TableCell
@@ -69,7 +72,10 @@ const ProblematicTable = ({ problematicEmployees }: IProblematicTableProps) => {
                   {data.actualityScore}%
                 </TableCell>
                 <TableCell>
-                  <CustomBadge severity={data.severity} />
+                  <CustomBadge
+                    severity={data.severity}
+                    label={data.severityLabel}
+                  />
                 </TableCell>
                 <TableCell>{data.mainReason}</TableCell>
                 <TableCell>{data.recommendedAction}</TableCell>

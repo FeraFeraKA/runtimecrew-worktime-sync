@@ -33,7 +33,10 @@ const Header = () => {
         </div>
         <div className="flex flex-col lg:flex-row items-center gap-4">
           <DatePickerWithRange />
-          <Select onValueChange={(value) => setCurrentTeam(value)}>
+          <Select
+            value={currentTeam ?? undefined}
+            onValueChange={(value) => setCurrentTeam(value)}
+          >
             <SelectTrigger className="rounded-xs w-65 bg-background">
               <SelectValue placeholder="Команда..." />
             </SelectTrigger>

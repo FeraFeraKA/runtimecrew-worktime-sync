@@ -1,4 +1,4 @@
-import type { RecommendationDto } from "@/shared/types/dashboard.types";
+import type { RecommendationDto } from "@/shared/types/dashboard/dashboard.types";
 import { ArrowRightIcon, User } from "lucide-react";
 import { ScrollArea } from "../../scroll-area";
 import CustomBadge from "../CustomBadge";
@@ -25,7 +25,7 @@ const TopRecommendations = ({
               <div className="flex items-center gap-2">
                 <User className="border p-1" size={40} />
                 <div className="flex justify-center w-24">
-                  <CustomBadge severity={rec.priority} />
+                  <CustomBadge severity={rec.priority} label={rec.priorityLabel} />
                 </div>
               </div>
               <div className="flex items-center gap-2">

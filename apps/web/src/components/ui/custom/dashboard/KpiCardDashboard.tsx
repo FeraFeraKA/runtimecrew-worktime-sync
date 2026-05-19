@@ -1,13 +1,13 @@
 import { cn } from "@/lib/utils";
-import { kpiCardConfig } from "@/shared/config/dashboard.config";
-import type { DashboardKpiDto } from "@/shared/types/dashboard.types";
+import { dashboardKpiMeta } from "@/shared/types/dashboard/dashboard.meta";
+import type { DashboardKpiDto } from "@/shared/types/dashboard/dashboard.types";
 
-interface IKpiCardProps {
+interface IKpiCardDashboardProps {
   kpi: DashboardKpiDto;
 }
 
-export function KpiCard({ kpi }: IKpiCardProps) {
-  const config = kpiCardConfig[kpi.key];
+const KpiCardDashboard = ({ kpi }: IKpiCardDashboardProps) => {
+  const config = dashboardKpiMeta[kpi.key];
   const Icon = config.icon;
 
   const formattedValue = kpi.unit === "%" ? `${kpi.value}%` : kpi.value;
@@ -20,7 +20,9 @@ export function KpiCard({ kpi }: IKpiCardProps) {
     >
       <div className="flex items-center justify-between">
         <span>{kpi.title}</span>
-        <Icon className={config.iconClassName} />
+        <span className={cn("rounded-md p-1.5", config.iconWrapperClassName)}>
+          <Icon className={cn("size-5", config.iconClassName)} />
+        </span>
       </div>
       <div className="flex items-center gap-3">
         <p className={cn("text-4xl font-semibold", config.valueClassName)}>
@@ -41,4 +43,6 @@ export function KpiCard({ kpi }: IKpiCardProps) {
       </div>
     </div>
   );
-}
+};
+
+export default KpiCardDashboard;

@@ -14,7 +14,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { mockDashboardResponse } from "@/shared/mock/dashboard.mock";
-import type { PeriodDto } from "@/shared/types/dashboard.types";
+import type { PeriodDto } from "@/shared/types/dashboard/dashboard.types";
 
 const toDateRange = (period: PeriodDto): DateRange => ({
   from: parseISO(period.from),
