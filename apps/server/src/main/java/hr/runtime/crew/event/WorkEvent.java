@@ -76,4 +76,6 @@ public class WorkEvent {
     public EventStatus getStatus() {
         return status;
     }
+
+    public EventType getEventType(){return eventType;}
 }

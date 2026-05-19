@@ -1,0 +1,268 @@
+{
+  "teams": [
+    {
+      "id": 1,
+      "name": "Runtime Crew",
+      "createdAt": "2026-05-18T09:00:00Z"
+    }
+  ],
+  "employees": [
+    {
+      "id": 1,
+      "teamId": 1,
+      "fullName": "Иван Петров",
+      "email": "ivan.petrov@example.com",
+      "role": "Backend Developer",
+      "avatarUrl": "/avatars/ivan-petrov.png",
+      "workSchedule": {
+        "workingDays": ["MON", "TUE", "WED", "THU", "FRI"],
+        "startTime": "09:00",
+        "endTime": "18:00",
+        "timezone": "Europe/Moscow",
+        "workFormat": "REMOTE",
+        "lastUpdatedAt": "2026-05-10T08:00:00Z",
+        "confirmedAt": "2026-05-10T08:05:00Z"
+      },
+      "createdAt": "2026-05-01T08:00:00Z",
+      "updatedAt": "2026-05-10T08:05:00Z"
+    },
+    {
+      "id": 2,
+      "teamId": 1,
+      "fullName": "Мария Соколова",
+      "email": "maria.sokolova@example.com",
+      "role": "Frontend Developer",
+      "avatarUrl": "/avatars/maria-sokolova.png",
+      "workSchedule": {
+        "workingDays": ["MON", "TUE", "WED", "THU", "FRI"],
+        "startTime": "10:00",
+        "endTime": "19:00",
+        "timezone": "Europe/Moscow",
+        "workFormat": "HYBRID",
+        "lastUpdatedAt": "2026-05-11T09:00:00Z",
+        "confirmedAt": "2026-05-11T09:10:00Z"
+      },
+      "createdAt": "2026-05-01T08:15:00Z",
+      "updatedAt": "2026-05-11T09:10:00Z"
+    },
+    {
+      "id": 3,
+      "teamId": 1,
+      "fullName": "Алексей Морозов",
+      "email": "alexey.morozov@example.com",
+      "role": "QA Engineer",
+      "avatarUrl": "/avatars/alexey-morozov.png",
+      "workSchedule": {
+        "workingDays": ["MON", "TUE", "WED", "THU", "FRI"],
+        "startTime": "09:00",
+        "endTime": "18:00",
+        "timezone": "Asia/Vladivostok",
+        "workFormat": "REMOTE",
+        "lastUpdatedAt": "2026-05-12T07:00:00Z",
+        "confirmedAt": "2026-05-12T07:10:00Z"
+      },
+      "createdAt": "2026-05-01T08:30:00Z",
+      "updatedAt": "2026-05-12T07:10:00Z"
+    },
+    {
+      "id": 4,
+      "teamId": 1,
+      "fullName": "Екатерина Лебедева",
+      "email": "ekaterina.lebedeva@example.com",
+      "role": "Product Manager",
+      "avatarUrl": "/avatars/ekaterina-lebedeva.png",
+      "workSchedule": {
+        "workingDays": ["MON", "TUE", "WED", "THU", "FRI"],
+        "startTime": "09:30",
+        "endTime": "18:30",
+        "timezone": "Europe/Amsterdam",
+        "workFormat": "OFFICE",
+        "lastUpdatedAt": "2026-05-09T08:30:00Z",
+        "confirmedAt": "2026-05-09T08:35:00Z"
+      },
+      "createdAt": "2026-05-01T08:45:00Z",
+      "updatedAt": "2026-05-09T08:35:00Z"
+    }
+  ],
+  "workEvents": [
+    {
+      "id": 1,
+      "teamId": 1,
+      "title": "Daily meeting",
+      "description": "Ежедневная синхронизация команды",
+      "startAt": "2026-05-18T07:00:00Z",
+      "endAt": "2026-05-18T07:30:00Z",
+      "eventType": "MEETING",
+      "status": "COMPLETED",
+      "createdAt": "2026-05-17T12:00:00Z"
+    },
+    {
+      "id": 2,
+      "teamId": 1,
+      "title": "Sprint planning",
+      "description": "Планирование задач на спринт",
+      "startAt": "2026-05-18T11:00:00Z",
+      "endAt": "2026-05-18T12:30:00Z",
+      "eventType": "MEETING",
+      "status": "PLANNED",
+      "createdAt": "2026-05-17T13:00:00Z"
+    },
+    {
+      "id": 3,
+      "teamId": 1,
+      "title": "Backend focus time",
+      "description": "Время для глубокой работы backend-разработчика",
+      "startAt": "2026-05-18T13:00:00Z",
+      "endAt": "2026-05-18T15:00:00Z",
+      "eventType": "FOCUS_TIME",
+      "status": "PLANNED",
+      "createdAt": "2026-05-17T14:00:00Z"
+    }
+  ],
+  "workEventParticipants": [
+    {
+      "id": 1,
+      "eventId": 1,
+      "employeeId": 1,
+      "role": "PARTICIPANT",
+      "attendanceStatus": "PRESENT",
+      "joinedAt": "2026-05-18T07:01:00Z",
+      "leftAt": "2026-05-18T07:30:00Z"
+    },
+    {
+      "id": 2,
+      "eventId": 1,
+      "employeeId": 2,
+      "role": "PARTICIPANT",
+      "attendanceStatus": "PRESENT",
+      "joinedAt": "2026-05-18T07:00:00Z",
+      "leftAt": "2026-05-18T07:29:00Z"
+    },
+    {
+      "id": 3,
+      "eventId": 1,
+      "employeeId": 3,
+      "role": "PARTICIPANT",
+      "attendanceStatus": "ABSENT",
+      "joinedAt": null,
+      "leftAt": null
+    },
+    {
+      "id": 4,
+      "eventId": 1,
+      "employeeId": 4,
+      "role": "ORGANIZER",
+      "attendanceStatus": "PRESENT",
+      "joinedAt": "2026-05-18T06:59:00Z",
+      "leftAt": "2026-05-18T07:31:00Z"
+    },
+    {
+      "id": 5,
+      "eventId": 2,
+      "employeeId": 1,
+      "role": "PARTICIPANT",
+      "attendanceStatus": "UNKNOWN",
+      "joinedAt": null,
+      "leftAt": null
+    },
+    {
+      "id": 6,
+      "eventId": 2,
+      "employeeId": 2,
+      "role": "PARTICIPANT",
+      "attendanceStatus": "UNKNOWN",
+      "joinedAt": null,
+      "leftAt": null
+    },
+    {
+      "id": 7,
+      "eventId": 2,
+      "employeeId": 4,
+      "role": "ORGANIZER",
+      "attendanceStatus": "UNKNOWN",
+      "joinedAt": null,
+      "leftAt": null
+    },
+    {
+      "id": 8,
+      "eventId": 3,
+      "employeeId": 1,
+      "role": "PARTICIPANT",
+      "attendanceStatus": "UNKNOWN",
+      "joinedAt": null,
+      "leftAt": null
+    }
+  ],
+  "eventAttendanceLogs": [
+    {
+      "id": 1,
+      "eventId": 1,
+      "employeeId": 1,
+      "participantId": 1,
+      "action": "JOINED",
+      "resultStatus": "PRESENT",
+      "occurredAt": "2026-05-18T07:01:00Z",
+      "comment": "Employee joined the meeting"
+    },
+    {
+      "id": 2,
+      "eventId": 1,
+      "employeeId": 1,
+      "participantId": 1,
+      "action": "LEFT",
+      "resultStatus": "PRESENT",
+      "occurredAt": "2026-05-18T07:30:00Z",
+      "comment": "Employee left the meeting"
+    },
+    {
+      "id": 3,
+      "eventId": 1,
+      "employeeId": 2,
+      "participantId": 2,
+      "action": "JOINED",
+      "resultStatus": "PRESENT",
+      "occurredAt": "2026-05-18T07:00:00Z",
+      "comment": "Employee joined the meeting"
+    },
+    {
+      "id": 4,
+      "eventId": 1,
+      "employeeId": 2,
+      "participantId": 2,
+      "action": "LEFT",
+      "resultStatus": "PRESENT",
+      "occurredAt": "2026-05-18T07:29:00Z",
+      "comment": "Employee left the meeting"
+    },
+    {
+      "id": 5,
+      "eventId": 1,
+      "employeeId": 3,
+      "participantId": 3,
+      "action": "AUTO_MARK_ABSENT",
+      "resultStatus": "ABSENT",
+      "occurredAt": "2026-05-18T07:35:00Z",
+      "comment": "Employee did not join the completed meeting"
+    },
+    {
+      "id": 6,
+      "eventId": 1,
+      "employeeId": 4,
+      "participantId": 4,
+      "action": "JOINED",
+      "resultStatus": "PRESENT",
+      "occurredAt": "2026-05-18T06:59:00Z",
+      "comment": "Organizer joined before meeting start"
+    },
+    {
+      "id": 7,
+      "eventId": 1,
+      "employeeId": 4,
+      "participantId": 4,
+      "action": "LEFT",
+      "resultStatus": "PRESENT",
+      "occurredAt": "2026-05-18T07:31:00Z",
+      "comment": "Organizer left after meeting end"
+    }
+  ]
+}
