@@ -1,10 +1,8 @@
-package hr.runtime.crew.employee;
+package hr.runtime.crew.employee.service;
 
-import hr.runtime.crew.employee.dto.CreateEmployeeRequest;
-import hr.runtime.crew.employee.dto.EmployeeResponse;
-import hr.runtime.crew.employee.dto.UpdateEmployeeRequest;
-import hr.runtime.crew.employee.dto.WorkScheduleRequest;
-import hr.runtime.crew.employee.dto.WorkScheduleResponse;
+import hr.runtime.crew.employee.dto.*;
+import hr.runtime.crew.employee.model.entity.Employee;
+import hr.runtime.crew.employee.repository.EmployeeRepository;
 import hr.runtime.crew.team.Team;
 import hr.runtime.crew.team.TeamService;
 import org.springframework.stereotype.Service;

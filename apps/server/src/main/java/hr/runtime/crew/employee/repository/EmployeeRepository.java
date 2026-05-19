@@ -1,5 +1,6 @@
-package hr.runtime.crew.employee;
+package hr.runtime.crew.employee.repository;
 
+import hr.runtime.crew.employee.model.entity.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

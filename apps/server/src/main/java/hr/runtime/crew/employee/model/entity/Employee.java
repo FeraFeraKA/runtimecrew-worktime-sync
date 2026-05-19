@@ -1,5 +1,6 @@
-package hr.runtime.crew.employee;
+package hr.runtime.crew.employee.model.entity;
 
+import hr.runtime.crew.employee.dto.WorkSchedule;
 import hr.runtime.crew.team.Team;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;

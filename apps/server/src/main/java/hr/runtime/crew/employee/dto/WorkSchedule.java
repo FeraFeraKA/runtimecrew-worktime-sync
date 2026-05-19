@@ -1,5 +1,7 @@
-package hr.runtime.crew.employee;
+package hr.runtime.crew.employee.dto;
 
+import hr.runtime.crew.employee.model.enums.WeekDay;
+import hr.runtime.crew.employee.model.enums.WorkFormat;
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;

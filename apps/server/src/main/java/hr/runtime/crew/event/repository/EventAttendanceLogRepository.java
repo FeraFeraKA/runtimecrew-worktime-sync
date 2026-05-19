@@ -1,5 +1,6 @@
-package hr.runtime.crew.event;
+package hr.runtime.crew.event.repository;
 
+import hr.runtime.crew.event.model.entity.EventAttendanceLog;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

@@ -1,5 +1,11 @@
-package hr.runtime.crew.event;
+package hr.runtime.crew.event.service;
 
+import hr.runtime.crew.event.model.entity.EventAttendanceLog;
+import hr.runtime.crew.event.model.entity.WorkEventParticipant;
+import hr.runtime.crew.event.model.enums.AttendanceAction;
+import hr.runtime.crew.event.model.enums.AttendanceStatus;
+import hr.runtime.crew.event.repository.EventAttendanceLogRepository;
+import hr.runtime.crew.event.repository.WorkEventParticipantRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

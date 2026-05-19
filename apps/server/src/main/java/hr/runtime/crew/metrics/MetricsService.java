@@ -1,14 +1,14 @@
 package hr.runtime.crew.metrics;
 
-import hr.runtime.crew.employee.Employee;
-import hr.runtime.crew.employee.EmployeeRepository;
-import hr.runtime.crew.employee.WeekDay;
-import hr.runtime.crew.employee.WorkSchedule;
-import hr.runtime.crew.event.EventStatus;
-import hr.runtime.crew.event.EventType;
-import hr.runtime.crew.event.WorkEvent;
-import hr.runtime.crew.event.WorkEventParticipant;
-import hr.runtime.crew.event.WorkEventParticipantRepository;
+import hr.runtime.crew.employee.model.entity.Employee;
+import hr.runtime.crew.employee.repository.EmployeeRepository;
+import hr.runtime.crew.employee.model.enums.WeekDay;
+import hr.runtime.crew.employee.dto.WorkSchedule;
+import hr.runtime.crew.event.model.enums.EventStatus;
+import hr.runtime.crew.event.model.enums.EventType;
+import hr.runtime.crew.event.model.entity.WorkEvent;
+import hr.runtime.crew.event.model.entity.WorkEventParticipant;
+import hr.runtime.crew.event.repository.WorkEventParticipantRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.DayOfWeek;

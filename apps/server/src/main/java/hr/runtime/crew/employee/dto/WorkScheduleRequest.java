@@ -1,7 +1,7 @@
 package hr.runtime.crew.employee.dto;
 
-import hr.runtime.crew.employee.WeekDay;
-import hr.runtime.crew.employee.WorkFormat;
+import hr.runtime.crew.employee.model.enums.WeekDay;
+import hr.runtime.crew.employee.model.enums.WorkFormat;
 
 import java.time.LocalTime;
 import java.util.Set;

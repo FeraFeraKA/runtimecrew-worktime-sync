@@ -1,5 +1,7 @@
-package hr.runtime.crew.event;
+package hr.runtime.crew.event.model.entity;
 
+import hr.runtime.crew.event.model.enums.EventStatus;
+import hr.runtime.crew.event.model.enums.EventType;
 import hr.runtime.crew.team.Team;
 import jakarta.persistence.*;
 

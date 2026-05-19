@@ -1,4 +1,4 @@
-package hr.runtime.crew.event;
+package hr.runtime.crew.event.model.enums;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 

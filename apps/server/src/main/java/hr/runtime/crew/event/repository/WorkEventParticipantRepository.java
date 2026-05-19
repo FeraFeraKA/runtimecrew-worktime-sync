@@ -1,5 +1,7 @@
-package hr.runtime.crew.event;
+package hr.runtime.crew.event.repository;
 
+import hr.runtime.crew.event.model.enums.EventStatus;
+import hr.runtime.crew.event.model.entity.WorkEventParticipant;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
