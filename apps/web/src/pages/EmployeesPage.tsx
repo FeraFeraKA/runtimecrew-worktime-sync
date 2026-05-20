@@ -4,7 +4,7 @@ import { mockEmployeesResponse } from "@/shared/mock/employees.mock";
 const EmployeesPage = () => {
   const data = mockEmployeesResponse;
 
-  return <Employees kpis={data.kpis} employees={data.employees} />;
+  return <Employees data={data} />;
 };
 
 export default EmployeesPage;

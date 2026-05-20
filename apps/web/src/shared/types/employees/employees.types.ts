@@ -3,6 +3,37 @@ import type { EmployeeShortDto, Severity, WorkFormat } from "../types";
 export type EmployeesPageResponse = {
   kpis: EmployeesPageKpiDto[];
   employees: EmployeeTableRowDto[];
+  productivityTimeline: EmployeeProductivityTimelineDto;
+};
+
+export type EmployeeProductivityTimelineDto = {
+  period: {
+    date: string;
+    startTime: string;
+    endTime: string;
+    intervalMinutes: number;
+  };
+  employees: EmployeeProductivityTimelineRowDto[];
+};
+
+export type EmployeeProductivityTimelineRowDto = {
+  employee: EmployeeShortDto;
+  roleLabel: string;
+  averageProductivityPercent: number;
+  segments: EmployeeProductivitySegmentDto[];
+};
+
+export type ProductivitySegmentStatus =
+  | "productive"
+  | "idle"
+  | "unproductive";
+
+export type EmployeeProductivitySegmentDto = {
+  startAt: string;
+  endAt: string;
+  productivityPercent: number;
+  status: ProductivitySegmentStatus;
+  statusLabel: string;
 };
 
 export type EmployeesPageKpiKey =

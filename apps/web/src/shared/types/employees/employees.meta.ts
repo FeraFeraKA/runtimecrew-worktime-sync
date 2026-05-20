@@ -8,7 +8,11 @@ import {
 } from "lucide-react";
 
 import type { Severity } from "../types";
-import type { EmployeeStatus, EmployeesPageKpiKey } from "./employees.types";
+import type {
+  EmployeeStatus,
+  EmployeesPageKpiKey,
+  ProductivitySegmentStatus,
+} from "./employees.types";
 
 export type EmployeesPageKpiMeta = {
   icon: LucideIcon;
@@ -137,3 +141,109 @@ export const employeeWorkFormatMeta = {
     badgeClassName: "bg-purple-200 text-purple-600",
   },
 };
+
+export const productivitySegmentStatusMeta: Record<
+  ProductivitySegmentStatus,
+  {
+    dotClassName: string;
+    textClassName: string;
+    label: string;
+  }
+> = {
+  productive: {
+    dotClassName: "bg-cyan-400",
+    textClassName: "text-cyan-600",
+    label: "Продуктивно",
+  },
+  idle: {
+    dotClassName: "bg-yellow-300",
+    textClassName: "text-yellow-600",
+    label: "Пониженная продуктивность",
+  },
+  unproductive: {
+    dotClassName: "bg-red-400",
+    textClassName: "text-red-600",
+    label: "Непродуктивно",
+  },
+};
+
+export function getProductivitySegmentStatus(
+  productivityPercent: number,
+): ProductivitySegmentStatus {
+  if (productivityPercent >= 70) {
+    return "productive";
+  }
+
+  if (productivityPercent >= 35) {
+    return "idle";
+  }
+
+  return "unproductive";
+}
+
+export function getProductivityBackground(value: number) {
+  const hue = value <= 50 ? (value / 50) * 47 : 47 + ((value - 50) / 50) * 135;
+  const saturation = value <= 50 ? 82 : 72;
+  const lightness = value <= 50 ? 61 : 54;
+
+  return `linear-gradient(90deg, hsl(${hue} ${saturation}% ${lightness}%), hsl(${hue} ${saturation}% ${Math.max(lightness - 5, 42)}%))`;
+}
+
+export function getProductivityClassName(value: number) {
+  if (value >= 80) {
+    return "text-cyan-600";
+  }
+
+  if (value >= 55) {
+    return "text-yellow-600";
+  }
+
+  return "text-red-600";
+}
+
+export function buildProductivityTimelineTimeLabels(
+  start: number,
+  end: number,
+  step: number,
+) {
+  const labels: string[] = [];
+
+  for (let current = start; current <= end; current += step) {
+    labels.push(formatProductivityTimelineTime(current));
+  }
+
+  return labels;
+}
+
+export function buildProductivityTimelineDateTime(
+  date: string,
+  minutes: number,
+) {
+  return `${date}T${formatProductivityTimelineTime(minutes)}:00`;
+}
+
+export function formatProductivityTimelineDateTime(dateTime: string) {
+  return dateTime.slice(11, 16);
+}
+
+export function formatProductivityTimelineTime(minutes: number) {
+  const hours = Math.floor(minutes / 60);
+  const restMinutes = minutes % 60;
+
+  return `${String(hours).padStart(2, "0")}:${String(restMinutes).padStart(
+    2,
+    "0",
+  )}`;
+}
+
+export function toProductivityTimelineMinutes(time: string) {
+  const [hours, minutes] = time.split(":").map(Number);
+
+  return hours * 60 + minutes;
+}
+
+export function dateTimeToProductivityTimelineMinutes(dateTime: string) {
+  return toProductivityTimelineMinutes(
+    formatProductivityTimelineDateTime(dateTime),
+  );
+}
