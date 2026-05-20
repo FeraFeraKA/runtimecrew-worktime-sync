@@ -4,6 +4,7 @@ import type {
 } from "@/shared/types/employees/employees.types";
 import EmployeesTable from "../ui/custom/employees/EmployeesTable";
 import KpiCardEmployee from "../ui/custom/employees/KpiCardEmployee";
+import ProductivityChart from "../ui/custom/employees/ProductivityChart";
 
 interface IEmployeesProps {
   kpis: EmployeesPageKpiDto[];
@@ -17,6 +18,7 @@ const Employees = ({ kpis, employees }: IEmployeesProps) => {
         <KpiCardEmployee key={kpi.key} kpi={kpi} />
       ))}
       <EmployeesTable employees={employees} />
+      <ProductivityChart employees={employees} />
     </section>
   );
 };

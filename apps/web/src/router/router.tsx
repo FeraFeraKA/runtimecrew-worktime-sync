@@ -1,4 +1,4 @@
-import App from "@/App";
+import App from "@/AppLayout";
 import DashboardPage from "@/pages/DashboardPage";
 import EmployeesPage from "@/pages/EmployeesPage";
 import { createBrowserRouter } from "react-router";

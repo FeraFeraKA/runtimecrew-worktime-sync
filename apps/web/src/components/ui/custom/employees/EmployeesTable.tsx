@@ -23,7 +23,7 @@ interface EmployeesTableProps {
 
 const EmployeesTable = ({ employees }: EmployeesTableProps) => {
   return (
-    <div className="min-h-0 overflow-hidden border bg-sidebar xl:col-span-5 xl:row-span-4">
+    <div className="min-h-0 overflow-hidden border bg-sidebar xl:col-span-5 xl:row-span-2">
       <Table>
         <TableHeader>
           <TableRow>

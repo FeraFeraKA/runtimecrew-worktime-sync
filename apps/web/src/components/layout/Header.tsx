@@ -1,5 +1,5 @@
 import { Bell } from "lucide-react";
-import { useState } from "react";
+import type { DateRange } from "react-day-picker";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { DatePickerWithRange } from "../ui/datepicker";
 import {
@@ -21,9 +21,19 @@ import {
 } from "../ui/select";
 import { SidebarTrigger } from "../ui/sidebar";
 
-const Header = () => {
-  const [currentTeam, setCurrentTeam] = useState<string | null>(null);
+interface IHeaderProps {
+  currentTeam: string | null;
+  period: DateRange | undefined;
+  onCurrentTeamChange: (team: string) => void;
+  onPeriodChange: (range: DateRange | undefined) => void;
+}
 
+const Header = ({
+  currentTeam,
+  period,
+  onCurrentTeamChange,
+  onPeriodChange,
+}: IHeaderProps) => {
   return (
     <>
       <header className="flex flex-col lg:flex-row items-center justify-between lg:h-16 p-4 gap-4 border-b bg-sidebar shrink-0">
@@ -32,10 +42,10 @@ const Header = () => {
           <h1 className="text-2xl font-bold">Дашборд</h1>
         </div>
         <div className="flex flex-col lg:flex-row items-center gap-4">
-          <DatePickerWithRange />
+          <DatePickerWithRange value={period} onChange={onPeriodChange} />
           <Select
             value={currentTeam ?? undefined}
-            onValueChange={(value) => setCurrentTeam(value)}
+            onValueChange={(value) => onCurrentTeamChange(value)}
           >
             <SelectTrigger className="rounded-xs w-65 bg-background">
               <SelectValue placeholder="Команда..." />
