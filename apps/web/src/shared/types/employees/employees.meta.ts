@@ -9,7 +9,10 @@ import {
 
 import type { Severity } from "../types";
 import type {
+  EmployeeFilterOption,
+  EmployeeRiskFilter,
   EmployeeStatus,
+  EmployeeStatusFilter,
   EmployeesPageKpiKey,
   ProductivitySegmentStatus,
 } from "./employees.types";
@@ -129,6 +132,34 @@ export const employeeRiskMeta: Record<
     badgeClassName: "bg-green-200 text-green-600",
   },
 };
+
+export const employeeAllFilterOption = {
+  value: "all",
+  label: "Все",
+} satisfies EmployeeFilterOption<"all">;
+
+export const employeeStatusFilterOptions = [
+  employeeAllFilterOption,
+  { value: "actual", label: "Актуален" },
+  { value: "outdated", label: "Устарел" },
+  { value: "outside_schedule_meetings", label: "Встречи вне графика" },
+  { value: "overloaded", label: "Перегружен" },
+  { value: "timezone_conflict", label: "Конфликт часового пояса" },
+  { value: "requires_confirmation", label: "Требует подтверждения" },
+  { value: "vacation", label: "В отпуске" },
+  { value: "business_trip", label: "В командировке" },
+  { value: "sick_leave", label: "На больничном" },
+  { value: "personal_unavailable", label: "Личная недоступность" },
+  { value: "work_format_mismatch", label: "Несовпадение формата работы" },
+] satisfies EmployeeFilterOption<EmployeeStatusFilter>[];
+
+export const employeeRiskFilterOptions = [
+  employeeAllFilterOption,
+  { value: "critical", label: "Критический" },
+  { value: "high", label: "Высокий" },
+  { value: "medium", label: "Средний" },
+  { value: "low", label: "Низкий" },
+] satisfies EmployeeFilterOption<EmployeeRiskFilter>[];
 
 export const employeeWorkFormatMeta = {
   office: {

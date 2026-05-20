@@ -51,6 +51,11 @@ export type EmployeesPageKpiDto = {
   changeLabel: string;
 };
 
+export type EmployeeFilterOption<TValue extends string = string> = {
+  value: TValue;
+  label: string;
+};
+
 export type EmployeeRoleFilter =
   | "all"
   | "backend_engineer"
