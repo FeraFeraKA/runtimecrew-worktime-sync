@@ -14,7 +14,7 @@ import type {
   EmployeeStatusFilter,
   EmployeeTableRowDto,
 } from "@/shared/types/employees/employees.types";
-import { EllipsisVertical, RotateCcw, Search } from "lucide-react";
+import { RotateCcw, Search } from "lucide-react";
 import { useMemo, useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "../../avatar";
 import { Badge } from "../../badge";
@@ -28,6 +28,7 @@ import {
   TableHeader,
   TableRow,
 } from "../../table";
+import EmployeeActionsDropdown from "./EmployeeActionsDropdown";
 import EmployeeFilterSelect from "./EmployeeFilterSelect";
 
 interface IEmployeesTableProps {
@@ -310,9 +311,7 @@ const EmployeesTable = ({ employees }: IEmployeesTableProps) => {
                     </Badge>
                   </TableCell>
                   <TableCell>
-                    <div className="flex items-center justify-center">
-                      <EllipsisVertical />
-                    </div>
+                    <EmployeeActionsDropdown />
                   </TableCell>
                 </TableRow>
               );
