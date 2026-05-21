@@ -23,7 +23,7 @@ export function DatePickerWithRange({
   onChange,
 }: IDatePickerWithRangeProps) {
   return (
-    <Field className="mx-auto w-58">
+    <Field className="mx-auto w-full lg:w-58">
       <Popover>
         <PopoverTrigger asChild className="rounded-xs">
           <Button

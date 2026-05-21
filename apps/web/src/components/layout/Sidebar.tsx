@@ -8,6 +8,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import { pageHandles } from "@/router/page.meta";
 import {
   Calendar,
   LayoutDashboard,
@@ -19,8 +20,8 @@ import { NavLink } from "react-router";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 
 const pages = [
-  { title: "Дашборд", path: "/", icon: LayoutDashboard },
-  { title: "Сотрудники", path: "/employees", icon: Users },
+  { title: pageHandles.dashboard.title, path: "/", icon: LayoutDashboard },
+  { title: pageHandles.employees.title, path: "/employees", icon: Users },
   {
     title: "Профиль сотрудника",
     path: "/employee-profile",
