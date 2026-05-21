@@ -1,8 +1,7 @@
 "use client";
 
-import { addDays, format } from "date-fns";
+import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
-import * as React from "react";
 import { type DateRange } from "react-day-picker";
 
 import { Button } from "@/components/ui/button";
@@ -14,14 +13,17 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 
-export function DatePickerWithRange() {
-  const [date, setDate] = React.useState<DateRange | undefined>({
-    from: new Date(new Date().getFullYear(), 0, 20),
-    to: addDays(new Date(new Date().getFullYear(), 0, 20), 20),
-  });
+interface IDatePickerWithRangeProps {
+  value: DateRange | undefined;
+  onChange: (range: DateRange | undefined) => void;
+}
 
+export function DatePickerWithRange({
+  value,
+  onChange,
+}: IDatePickerWithRangeProps) {
   return (
-    <Field className="mx-auto w-57">
+    <Field className="mx-auto w-58">
       <Popover>
         <PopoverTrigger asChild className="rounded-xs">
           <Button
@@ -30,14 +32,14 @@ export function DatePickerWithRange() {
             className="justify-start px-2.5 font-normal"
           >
             <CalendarIcon />
-            {date?.from ? (
-              date.to ? (
+            {value?.from ? (
+              value.to ? (
                 <>
-                  {format(date.from, "LLL dd, y")} -{" "}
-                  {format(date.to, "LLL dd, y")}
+                  {format(value.from, "LLL dd, y")} -{" "}
+                  {format(value.to, "LLL dd, y")}
                 </>
               ) : (
-                format(date.from, "LLL dd, y")
+                format(value.from, "LLL dd, y")
               )
             ) : (
               <span>Pick a date</span>
@@ -47,9 +49,8 @@ export function DatePickerWithRange() {
         <PopoverContent className="w-auto p-0 rounded-xs" align="start">
           <Calendar
             mode="range"
-            defaultMonth={date?.from}
-            selected={date}
-            onSelect={setDate}
+            selected={value}
+            onSelect={onChange}
             numberOfMonths={2}
           />
         </PopoverContent>

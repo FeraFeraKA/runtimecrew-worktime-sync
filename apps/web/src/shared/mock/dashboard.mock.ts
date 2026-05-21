@@ -1,4 +1,4 @@
-import type { DashboardResponse } from "../types/dashboard.types";
+import type { DashboardResponse } from "../types/dashboard/dashboard.types";
 
 export const mockDashboardResponse: DashboardResponse = {
   team: {
@@ -62,15 +62,13 @@ export const mockDashboardResponse: DashboardResponse = {
     {
       key: "critical",
       count: 5,
-      color: "#dc2626",
     },
     {
       key: "high",
       count: 12,
-      color: "#ea580c",
     },
-    { key: "medium", count: 5, color: "#ca8a04" },
-    { key: "low", count: 8, color: "#16a34a" },
+    { key: "medium", count: 5 },
+    { key: "low", count: 8 },
   ],
 
   problematicEmployees: [
@@ -80,18 +78,23 @@ export const mockDashboardResponse: DashboardResponse = {
         fullName: "Иван Петров",
         avatarUrl: "/avatars/ivan-petrov.png",
       },
-      role: "Бэкенд-инженер",
+      role: "backend_engineer",
+      roleLabel: "Бэкенд-инженер",
       timezone: "Europe/Moscow",
+      timezoneLabel: "UTC +3",
       workFormat: "remote",
+      workFormatLabel: "Удалённо",
       actualityScore: 52,
       riskScore: 78,
       severity: "critical",
+      severityLabel: "Критический",
       mainReason: "37% встреч вне рабочего графика",
       recommendedAction: "Попросить обновить рабочий график",
       daysSinceLastUpdate: 17,
       conflictsCount: 6,
       loadRate: 0.86,
-      status: "Необходимо обновить график",
+      status: "outdated",
+      statusLabel: "Необходимо обновить график",
     },
     {
       employee: {
@@ -99,18 +102,23 @@ export const mockDashboardResponse: DashboardResponse = {
         fullName: "Мария Соколова",
         avatarUrl: "/avatars/maria-sokolova.png",
       },
-      role: "Фронтенд-инженер",
+      role: "frontend_engineer",
+      roleLabel: "Фронтенд-инженер",
       timezone: "Europe/Moscow",
+      timezoneLabel: "UTC +3",
       workFormat: "hybrid",
+      workFormatLabel: "Гибрид",
       actualityScore: 58,
       riskScore: 72,
       severity: "critical",
+      severityLabel: "Критический",
       mainReason: "Частые пересечения с личной недоступностью",
       recommendedAction: "Проверить исключения в календаре",
       daysSinceLastUpdate: 12,
       conflictsCount: 5,
       loadRate: 0.78,
-      status: "Есть конфликты с исключениями",
+      status: "personal_unavailable",
+      statusLabel: "Есть конфликты с исключениями",
     },
     {
       employee: {
@@ -118,18 +126,23 @@ export const mockDashboardResponse: DashboardResponse = {
         fullName: "Алексей Морозов",
         avatarUrl: "/avatars/alexey-morozov.png",
       },
-      role: "QA-инженер",
+      role: "qa_engineer",
+      roleLabel: "QA-инженер",
       timezone: "Asia/Vladivostok",
+      timezoneLabel: "UTC +10",
       workFormat: "remote",
+      workFormatLabel: "Удалённо",
       actualityScore: 61,
       riskScore: 68,
       severity: "high",
+      severityLabel: "Высокий",
       mainReason: "Разница часовых поясов влияет на встречи",
       recommendedAction: "Сместить командные встречи на 2 часа раньше",
       daysSinceLastUpdate: 9,
       conflictsCount: 4,
       loadRate: 0.72,
-      status: "Конфликты часовых поясов",
+      status: "timezone_conflict",
+      statusLabel: "Конфликты часовых поясов",
     },
     {
       employee: {
@@ -137,18 +150,23 @@ export const mockDashboardResponse: DashboardResponse = {
         fullName: "Екатерина Лебедева",
         avatarUrl: "/avatars/ekaterina-lebedeva.png",
       },
-      role: "Product Manager",
+      role: "product_manager",
+      roleLabel: "Product Manager",
       timezone: "Europe/Moscow",
+      timezoneLabel: "UTC +3",
       workFormat: "office",
+      workFormatLabel: "Офис",
       actualityScore: 64,
       riskScore: 75,
       severity: "high",
+      severityLabel: "Высокий",
       mainReason: "Перегрузка встречами в рабочие дни",
       recommendedAction: "Забронировать focus time в календаре",
       daysSinceLastUpdate: 5,
       conflictsCount: 3,
       loadRate: 0.94,
-      status: "Перегрузка встречами",
+      status: "overloaded",
+      statusLabel: "Перегрузка встречами",
     },
     {
       employee: {
@@ -156,18 +174,23 @@ export const mockDashboardResponse: DashboardResponse = {
         fullName: "Дмитрий Волков",
         avatarUrl: "/avatars/dmitry-volkov.png",
       },
-      role: "DevOps-инженер",
+      role: "devops_engineer",
+      roleLabel: "DevOps-инженер",
       timezone: "Europe/Samara",
+      timezoneLabel: "UTC +4",
       workFormat: "remote",
+      workFormatLabel: "Удалённо",
       actualityScore: 66,
       riskScore: 70,
       severity: "medium",
+      severityLabel: "Средний",
       mainReason: "График давно не подтверждался",
       recommendedAction: "Отправить запрос на подтверждение графика",
       daysSinceLastUpdate: 24,
       conflictsCount: 2,
       loadRate: 0.68,
-      status: "Необходимо обновить график",
+      status: "requires_confirmation",
+      statusLabel: "Необходимо обновить график",
     },
     {
       employee: {
@@ -175,18 +198,23 @@ export const mockDashboardResponse: DashboardResponse = {
         fullName: "Анна Кузнецова",
         avatarUrl: "/avatars/anna-kuznetsova.png",
       },
-      role: "UX/UI-дизайнер",
+      role: "ui_ux_designer",
+      roleLabel: "UX/UI-дизайнер",
       timezone: "Europe/Moscow",
+      timezoneLabel: "UTC +3",
       workFormat: "hybrid",
+      workFormatLabel: "Гибрид",
       actualityScore: 71,
       riskScore: 65,
       severity: "medium",
+      severityLabel: "Средний",
       mainReason: "Несовпадение формата работы с офлайн-встречами",
       recommendedAction: "Уточнить дни работы из офиса",
       daysSinceLastUpdate: 8,
       conflictsCount: 2,
       loadRate: 0.57,
-      status: "Несовпадение формата работы",
+      status: "work_format_mismatch",
+      statusLabel: "Несовпадение формата работы",
     },
   ],
 
@@ -194,6 +222,7 @@ export const mockDashboardResponse: DashboardResponse = {
     {
       id: "a9a0063b-4467-417e-9b18-c96c10d42bb2",
       priority: "critical",
+      priorityLabel: "Критический",
       title: "Попросить Ивана обновить график",
       description:
         "У сотрудника высокий процент встреч вне рабочего времени за выбранный период.",
@@ -205,6 +234,7 @@ export const mockDashboardResponse: DashboardResponse = {
       ],
       target: {
         type: "employee",
+        typeLabel: "Сотрудник",
         employeeId: "d6fd68c7-0a1e-4246-b2c3-d52f599fb183",
       },
       suggestedActionLabel: "Попросить обновить график",
@@ -219,6 +249,7 @@ export const mockDashboardResponse: DashboardResponse = {
     {
       id: "ca9cc53a-58ad-4826-8d6b-276e4c4d0de5",
       priority: "critical",
+      priorityLabel: "Критический",
       title: "Проверить исключения Марии",
       description:
         "У сотрудника есть пересечения рабочих событий с периодами недоступности.",
@@ -229,6 +260,7 @@ export const mockDashboardResponse: DashboardResponse = {
       ],
       target: {
         type: "employee",
+        typeLabel: "Сотрудник",
         employeeId: "1f0d36a7-3aa2-4f79-bf6e-e26e8d9f5ef4",
       },
       suggestedActionLabel: "Проверить и скорректировать исключения",
@@ -243,6 +275,7 @@ export const mockDashboardResponse: DashboardResponse = {
     {
       id: "089373a7-f456-41e9-9e8c-2f3bc6310678",
       priority: "high",
+      priorityLabel: "Высокий",
       title: "Сместить командные встречи",
       description:
         "Часть сотрудников находится в другом часовом поясе, из-за чего встречи попадают вне рабочего времени.",
@@ -253,6 +286,7 @@ export const mockDashboardResponse: DashboardResponse = {
       ],
       target: {
         type: "team",
+        typeLabel: "Команда",
         teamId: "8d3510e7-0e23-4c2e-a3f4-5bb1e38d7c30",
       },
       suggestedActionLabel: "Сместить встречи на 2 часа раньше",
@@ -267,6 +301,7 @@ export const mockDashboardResponse: DashboardResponse = {
     {
       id: "cc19d57e-d7a8-42cc-bd80-44e2569c7e1f",
       priority: "high",
+      priorityLabel: "Высокий",
       title: "Добавить focus time для Екатерины",
       description:
         "Высокая плотность встреч снижает доступность сотрудника для глубокой работы.",
@@ -274,6 +309,7 @@ export const mockDashboardResponse: DashboardResponse = {
       evidence: ["Load rate: 0.94", "3 дня подряд с высокой плотностью встреч"],
       target: {
         type: "employee",
+        typeLabel: "Сотрудник",
         employeeId: "50f8717d-fc8e-41dd-8d32-4d6a0f3c7f94",
       },
       suggestedActionLabel: "Добавить focus time",

@@ -1,26 +1,22 @@
-import { formatSeverity } from "@/lib/format";
 import { cn } from "@/lib/utils";
+import { severityMeta } from "@/shared/types/dashboard/dashboard.meta";
+import type { Severity } from "@/shared/types/types";
 import { Badge } from "../badge";
 
-interface CustomBadgeProps {
-  severity: "critical" | "high" | "medium" | "low";
+interface ICustomBadgeProps {
+  severity: Severity;
+  label?: string;
 }
 
-const CustomBadge = ({ severity }: CustomBadgeProps) => {
+const CustomBadge = ({ severity, label }: ICustomBadgeProps) => {
+  const meta = severityMeta[severity];
+
   return (
     <Badge
       variant="outline"
-      className={cn(
-        severity === "low"
-          ? "bg-green-200 text-green-600"
-          : severity === "medium"
-            ? "bg-yellow-200 text-yellow-600"
-            : severity === "high"
-              ? "bg-orange-200 text-orange-600"
-              : "bg-red-200 text-red-600",
-      )}
+      className={cn("border-transparent", meta.badgeClassName)}
     >
-      {formatSeverity(severity)}
+      {label ?? meta.label}
     </Badge>
   );
 };

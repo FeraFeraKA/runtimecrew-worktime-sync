@@ -1,4 +1,9 @@
-import type { RecommendationPriority, Severity, WorkFormat } from "./types";
+import type {
+  EmployeeShortDto,
+  RecommendationPriority,
+  Severity,
+  WorkFormat,
+} from "../types";
 
 export type DashboardResponse = {
   team: TeamDto;
@@ -40,22 +45,30 @@ export type DashboardKpisDto = DashboardKpiDto[];
 
 export type RiskDistributionKey = "critical" | "high" | "medium" | "low";
 
-export type RiskDistributionDto = {
+export type RiskDistributionItemDto = {
   key: RiskDistributionKey;
   count: number;
-  color: string;
-}[];
+};
+
+export type RiskDistributionDto = RiskDistributionItemDto[];
 
 export type EmployeeDiagnosticSummaryDto = {
   employee: EmployeeShortDto;
 
   role: string;
+  roleLabel: string;
+
   timezone: string;
+  timezoneLabel: string;
+
   workFormat: WorkFormat;
+  workFormatLabel: string;
 
   actualityScore: number;
   riskScore: number;
+
   severity: Severity;
+  severityLabel: string;
 
   mainReason: string;
   recommendedAction: string;
@@ -65,17 +78,14 @@ export type EmployeeDiagnosticSummaryDto = {
   loadRate: number;
 
   status: string;
-};
-
-export type EmployeeShortDto = {
-  id: string;
-  fullName: string;
-  avatarUrl: string | undefined;
+  statusLabel: string;
 };
 
 export type RecommendationDto = {
   id: string;
+
   priority: RecommendationPriority;
+  priorityLabel: string;
 
   title: string;
   description: string;
@@ -90,8 +100,12 @@ export type RecommendationDto = {
   createdAt: string;
 };
 
+export type RecommendationTargetType = "employee" | "team" | "event" | "schedule";
+
 export type RecommendationTargetDto = {
-  type: "employee" | "team" | "event" | "schedule";
+  type: RecommendationTargetType;
+  typeLabel: string;
+
   employeeId?: string;
   teamId?: string;
   eventId?: string;
