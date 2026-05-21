@@ -23,7 +23,7 @@ const pages = [
   { title: pageHandles.dashboard.title, path: "/", icon: LayoutDashboard },
   { title: pageHandles.employees.title, path: "/employees", icon: Users },
   {
-    title: "Профиль сотрудника",
+    title: pageHandles.employeeProfile.title,
     path: "/employee-profile",
     icon: User,
   },

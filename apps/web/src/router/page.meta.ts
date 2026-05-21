@@ -11,6 +11,9 @@ export const pageHandles = {
   employees: {
     title: "Сотрудники",
   },
+  employeeProfile: {
+    title: "Профиль сотрудника",
+  },
 } satisfies Record<string, PageHandle>;
 
 const isPageHandle = (handle: unknown): handle is PageHandle => {
