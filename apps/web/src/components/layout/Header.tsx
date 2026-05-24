@@ -1,4 +1,5 @@
 import { getPageTitleFromMatches } from "@/router/page.meta";
+import { TEAM_OPTIONS } from "@/shared/config/defaults";
 import { Bell } from "lucide-react";
 import type { DateRange } from "react-day-picker";
 import { useMatches } from "react-router";
@@ -60,15 +61,11 @@ const Header = ({
               <SelectContent className="rounded-xs">
                 <SelectGroup>
                   <SelectLabel>Команды</SelectLabel>
-                  <SelectItem value="product-team">
-                    Продуктовая команда
-                  </SelectItem>
-                  <SelectItem value="research-team">
-                    Исследовательская команда
-                  </SelectItem>
-                  <SelectItem value="analytic-team">
-                    Аналитическая команда
-                  </SelectItem>
+                  {TEAM_OPTIONS.map((team) => (
+                    <SelectItem key={team.id} value={team.id}>
+                      {team.name}
+                    </SelectItem>
+                  ))}
                 </SelectGroup>
               </SelectContent>
             </Select>
