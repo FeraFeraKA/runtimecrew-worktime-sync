@@ -4,11 +4,18 @@ import hr.runtime.crew.event.model.enums.EventStatus;
 import hr.runtime.crew.event.model.enums.EventType;
 import hr.runtime.crew.team.Team;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.Instant;
 
 @Entity
 @Table(name = "work_events")
+@Setter
+@Getter
+@AllArgsConstructor
 public class WorkEvent {
 
     @Id
@@ -40,6 +47,9 @@ public class WorkEvent {
 
     @Column(nullable = false)
     private Instant createdAt = Instant.now();
+
+    @Column(name = "location_type")
+    private String locationType;
 
     public WorkEvent() {
     }

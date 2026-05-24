@@ -2,6 +2,7 @@ package hr.runtime.crew.event.model.entity;
 
 import hr.runtime.crew.employee.model.entity.Employee;
 import hr.runtime.crew.event.model.enums.AttendanceStatus;
+import hr.runtime.crew.event.model.enums.ParticipantRole;
 import jakarta.persistence.*;
 
 import java.time.Instant;

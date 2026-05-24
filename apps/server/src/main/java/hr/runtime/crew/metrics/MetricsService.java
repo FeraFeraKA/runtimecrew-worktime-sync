@@ -169,6 +169,83 @@ public class MetricsService {
         return clamp((float) nightEvents / totalEvents);
     }
 
+    public long daysSinceLastUpdate(Employee employee) {
+        WorkSchedule schedule = employee.getWorkSchedule();
+        if (schedule == null || schedule.getLastUpdatedAt() == null) {
+            return MAX_ALLOWED_DAYS;
+        }
+        long days = ChronoUnit.DAYS.between(schedule.getLastUpdatedAt(), Instant.now());
+        return days < 0 ? 0 : days;
+    }
+
+    public float actualityScore(Employee employee) {
+        return scheduleActuality(employee.getId());
+    }
+
+    public float loadRate(Employee employee, List<WorkEvent> dayEvents, LocalTime workStart, LocalTime workEnd) {
+        if (dayEvents.isEmpty()) return 0.0f;
+
+        long workMinutes = Duration.between(workStart, workEnd).toMinutes();
+        if (workMinutes <= 0) return 1.0f;
+
+        long busyMinutes = dayEvents.stream()
+                .mapToLong(e -> Duration.between(e.getStartAt(), e.getEndAt()).toMinutes())
+                .sum();
+
+        if (busyMinutes >= workMinutes) return 1.0f;
+
+        float freeMinutes = workMinutes - busyMinutes;
+        int meetingsCount = dayEvents.size();
+
+        float timePenalty = meetingsCount * DEFAULT_SWITCH_PENALTY_MINUTES
+                * (1 + (meetingsCount * DEFAULT_FOCUS_TASK_MINUTES) / freeMinutes);
+
+        float overload = (busyMinutes + timePenalty) / workMinutes;
+        return clamp(overload);
+    }
+
+    public float timezoneSuspicionScore(Employee employee, List<WorkEvent> events) {
+        if (events.size() < MIN_TIMEZONE_EVENTS) return 0.0f;
+
+        WorkSchedule schedule = employee.getWorkSchedule();
+        if (schedule == null || schedule.getTimezone() == null) return 0.0f;
+
+        ZoneId zone = resolveZoneId(schedule);
+        if (zone == null) return 0.0f;
+
+        long nightEvents = events.stream()
+                .filter(e -> isEventStartedAtNight(e, zone))
+                .count();
+
+        return (float) nightEvents / events.size();
+    }
+
+    public float riskScore(Employee employee, List<WorkEvent> dayEvents, LocalTime workStart, LocalTime workEnd) {
+        float Ai = scheduleActuality(employee.getId());
+        float Ci = workingTimeConflict(employee.getId());
+        float Li = loadRate(employee, dayEvents, workStart, workEnd);
+        float Zi = timezoneSuspicionScore(employee, dayEvents);
+        float Hi = workFormatScore(employee.getId());
+
+        float w1 = 0.35f;
+        float w2 = 0.10f;
+        float w3 = 0.10f;
+        float w4 = 0.10f;
+        float w5 = 0.35f;
+
+        float Ri = w1 * (1 - Ai) + w2 * Ci + w3 * Li + w4 * Zi + w5 * Hi;
+
+        return clamp(Ri) * 100;
+    }
+
+    public String getRiskStatus(double riskScore) {
+        if (riskScore <= 30) return "low";
+        if (riskScore <= 60) return "medium";
+        if (riskScore <= 80) return "high";
+        return "critical";
+    }
+
+
     private Employee getEmployee(Long employeeId) {
         return employeeRepository.findById(employeeId)
                 .orElseThrow(() -> new RuntimeException("Employee not found"));
@@ -181,7 +258,7 @@ public class MetricsService {
                 .toList();
     }
 
-    private List<WorkEvent> getEmployeeEvents(Long employeeId) {
+    public List<WorkEvent> getEmployeeEvents(Long employeeId) {
         return participantRepository.findByEmployee_Id(employeeId)
                 .stream()
                 .map(WorkEventParticipant::getEvent)
