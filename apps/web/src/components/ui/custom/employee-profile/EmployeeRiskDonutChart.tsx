@@ -16,26 +16,28 @@ const EmployeeRiskDonutChart = ({
   }));
 
   return (
-    <div className="flex min-h-0 flex-col border bg-sidebar p-3 xl:col-span-2 xl:row-span-2">
+    <div className="flex min-h-80 flex-col border bg-sidebar p-3 xl:col-span-2 xl:row-span-2 xl:min-h-0">
       <h2 className="font-bold">Распределение риска</h2>
       <div className="grid min-h-0 flex-1 items-center gap-4 lg:grid-cols-[minmax(0,1fr)_auto]">
-        <ResponsiveContainer width="100%" height="100%">
-          <PieChart>
-            <Pie
-              data={data}
-              dataKey="count"
-              nameKey="label"
-              innerRadius="48%"
-              outerRadius="78%"
-              paddingAngle={0}
-            >
-              {data.map((item) => (
-                <Cell key={item.risk} fill={item.color} />
-              ))}
-            </Pie>
-            <Tooltip />
-          </PieChart>
-        </ResponsiveContainer>
+        <div className="h-72 min-h-0 xl:h-full">
+          <ResponsiveContainer width="100%" height="100%">
+            <PieChart>
+              <Pie
+                data={data}
+                dataKey="count"
+                nameKey="label"
+                innerRadius="48%"
+                outerRadius="78%"
+                paddingAngle={0}
+              >
+                {data.map((item) => (
+                  <Cell key={item.risk} fill={item.color} />
+                ))}
+              </Pie>
+              <Tooltip />
+            </PieChart>
+          </ResponsiveContainer>
+        </div>
 
         <div className="flex flex-col gap-3">
           {data.map((item) => (

@@ -1,3 +1,4 @@
+import { DEFAULT_TEAM_ID } from "../config/defaults";
 import type { EmployeeProfileResponse } from "../types/employee-profile/employee-profile.types";
 
 export const mockEmployeeProfileResponse: EmployeeProfileResponse = {
@@ -9,8 +10,8 @@ export const mockEmployeeProfileResponse: EmployeeProfileResponse = {
     },
     email: "ivan.petrov@company.com",
     role: "backend_engineer",
-    roleLabel: "Backend Engineer",
-    teamId: "product-team",
+    roleLabel: "Бэкенд-инженер",
+    teamId: DEFAULT_TEAM_ID,
     teamName: "Продуктовая команда",
     timezone: "Europe/Moscow",
     timezoneLabel: "UTC +3",
@@ -28,17 +29,17 @@ export const mockEmployeeProfileResponse: EmployeeProfileResponse = {
     conflictsCount: 9,
     overloadedDaysCount: 9,
   },
-  activity: [
-    { label: "0", activityScore: 78 },
-    { label: "1", activityScore: 200 },
-    { label: "2", activityScore: 70 },
-    { label: "3", activityScore: 108 },
-    { label: "4", activityScore: 184 },
-    { label: "5", activityScore: 148 },
-    { label: "6", activityScore: 36 },
-    { label: "7", activityScore: 180 },
-    { label: "8", activityScore: 96 },
-    { label: "9", activityScore: 128 },
+  productivity: [
+    { label: "09:00", productivityPercent: 48 },
+    { label: "10:00", productivityPercent: 78 },
+    { label: "11:00", productivityPercent: 84 },
+    { label: "12:00", productivityPercent: 70 },
+    { label: "13:00", productivityPercent: 38 },
+    { label: "14:00", productivityPercent: 66 },
+    { label: "15:00", productivityPercent: 90 },
+    { label: "16:00", productivityPercent: 84 },
+    { label: "17:00", productivityPercent: 61 },
+    { label: "18:00", productivityPercent: 52 },
   ],
   riskDistribution: [
     { risk: "low", count: 12 },

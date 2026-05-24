@@ -35,7 +35,7 @@ const EmployeeProfileCard = ({ employee }: IEmployeeProfileCardProps) => {
       </div>
 
       <div className="grid min-w-0 flex-1 gap-x-8 gap-y-3 sm:grid-cols-2">
-        <ProfileField label="Email" value={employee.email} />
+        <ProfileField label="Почта" value={employee.email} />
         <ProfileField label="Команда" value={employee.teamName} />
         <ProfileField label="Часовой пояс" value={employee.timezoneLabel} />
         <ProfileField label="Формат работы" value={employee.workFormatLabel} />

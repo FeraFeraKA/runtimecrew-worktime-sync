@@ -3,7 +3,7 @@ import type { EmployeeShortDto, Severity, WorkFormat } from "../types";
 export type EmployeeProfileResponse = {
   employee: EmployeeProfileDto;
   statistics: EmployeeProfileStatisticsDto;
-  activity: EmployeeActivityPointDto[];
+  productivity: EmployeeProductivityPointDto[];
   riskDistribution: EmployeeRiskDistributionItemDto[];
   topConflicts: EmployeeConflictDto[];
   overloadedDays: EmployeeOverloadedDayDto[];
@@ -34,9 +34,9 @@ export type EmployeeProfileStatisticsDto = {
   overloadedDaysCount: number;
 };
 
-export type EmployeeActivityPointDto = {
+export type EmployeeProductivityPointDto = {
   label: string;
-  activityScore: number;
+  productivityPercent: number;
 };
 
 export type EmployeeRiskDistributionItemDto = {
