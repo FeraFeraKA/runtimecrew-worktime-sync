@@ -1,9 +1,10 @@
 package hr.runtime.crew.availability;
 
+import java.util.UUID;
 import hr.runtime.crew.employee.model.entity.Employee;
 import hr.runtime.crew.employee.repository.EmployeeRepository;
 import hr.runtime.crew.employee.model.enums.WeekDay;
-import hr.runtime.crew.employee.dto.WorkSchedule;
+import hr.runtime.crew.employee.model.entity.WorkSchedule;
 import hr.runtime.crew.event.model.enums.EventStatus;
 import hr.runtime.crew.event.repository.WorkEventParticipantRepository;
 import org.springframework.stereotype.Service;
@@ -28,7 +29,7 @@ public class AvailabilityService {
         this.participantRepository = participantRepository;
     }
 
-    public boolean isEmployeeAvailable(Long employeeId, Instant timeStart, Instant timeEnd) {
+    public boolean isEmployeeAvailable(UUID employeeId, Instant timeStart, Instant timeEnd) {
         if (employeeId == null || timeStart == null || timeEnd == null) {
             return false;
         }

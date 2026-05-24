@@ -1,9 +1,20 @@
 package hr.runtime.crew.event.model.entity;
 
+import java.util.UUID;
 import hr.runtime.crew.employee.model.entity.Employee;
 import hr.runtime.crew.event.model.enums.AttendanceAction;
 import hr.runtime.crew.event.model.enums.AttendanceStatus;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
 import java.time.Instant;
 
@@ -12,8 +23,8 @@ import java.time.Instant;
 public class EventAttendanceLog {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "event_id", nullable = false)
@@ -59,5 +70,37 @@ public class EventAttendanceLog {
         this.resultStatus = resultStatus;
         this.occurredAt = occurredAt;
         this.comment = comment;
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public WorkEvent getEvent() {
+        return event;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public WorkEventParticipant getParticipant() {
+        return participant;
+    }
+
+    public AttendanceAction getAction() {
+        return action;
+    }
+
+    public AttendanceStatus getResultStatus() {
+        return resultStatus;
+    }
+
+    public Instant getOccurredAt() {
+        return occurredAt;
+    }
+
+    public String getComment() {
+        return comment;
     }
 }

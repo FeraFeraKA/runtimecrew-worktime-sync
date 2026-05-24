@@ -1,4 +1,4 @@
-package hr.runtime.crew.employee.dto;
+package hr.runtime.crew.employee.model.entity;
 
 import hr.runtime.crew.employee.model.enums.WeekDay;
 import hr.runtime.crew.employee.model.enums.WorkFormat;

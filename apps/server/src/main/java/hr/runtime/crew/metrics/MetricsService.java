@@ -1,6 +1,7 @@
 package hr.runtime.crew.metrics;
 
-import hr.runtime.crew.employee.dto.WorkSchedule;
+import java.util.UUID;
+import hr.runtime.crew.employee.model.entity.WorkSchedule;
 import hr.runtime.crew.employee.model.entity.Employee;
 import hr.runtime.crew.employee.model.enums.WeekDay;
 import hr.runtime.crew.employee.repository.EmployeeRepository;
@@ -62,7 +63,7 @@ public class MetricsService {
     }
 
     @Transactional(readOnly = true)
-    public float workingTimeConflict(Long employeeId) {
+    public float workingTimeConflict(UUID employeeId) {
         Employee employee = getEmployee(employeeId);
         List<WorkEvent> meetings = getEmployeeMeetings(employeeId);
 
@@ -70,7 +71,7 @@ public class MetricsService {
     }
 
     @Transactional(readOnly = true)
-    public float scheduleActuality(Long employeeId) {
+    public float scheduleActuality(UUID employeeId) {
         Employee employee = getEmployee(employeeId);
         WorkSchedule schedule = employee.getWorkSchedule();
 
@@ -99,7 +100,7 @@ public class MetricsService {
     }
 
     @Transactional(readOnly = true)
-    public float overloadScore(Long employeeId) {
+    public float overloadScore(UUID employeeId) {
         Employee employee = getEmployee(employeeId);
         WorkSchedule schedule = employee.getWorkSchedule();
 
@@ -124,7 +125,7 @@ public class MetricsService {
     }
 
     @Transactional(readOnly = true)
-    public float timezoneActualityCoefficient(Long employeeId) {
+    public float timezoneActualityCoefficient(UUID employeeId) {
         Employee employee = getEmployee(employeeId);
         WorkSchedule schedule = employee.getWorkSchedule();
 
@@ -169,19 +170,19 @@ public class MetricsService {
         return clamp((float) nightEvents / totalEvents);
     }
 
-    private Employee getEmployee(Long employeeId) {
+    private Employee getEmployee(UUID employeeId) {
         return employeeRepository.findById(employeeId)
                 .orElseThrow(() -> new RuntimeException("Employee not found"));
     }
 
-    private List<WorkEvent> getEmployeeMeetings(Long employeeId) {
+    private List<WorkEvent> getEmployeeMeetings(UUID employeeId) {
         return getEmployeeEvents(employeeId)
                 .stream()
                 .filter(event -> event.getEventType() == EventType.MEETING)
                 .toList();
     }
 
-    private List<WorkEvent> getEmployeeEvents(Long employeeId) {
+    private List<WorkEvent> getEmployeeEvents(UUID employeeId) {
         return participantRepository.findByEmployee_Id(employeeId)
                 .stream()
                 .map(WorkEventParticipant::getEvent)
@@ -373,7 +374,7 @@ public class MetricsService {
         return value;
     }
 
-    public float workFormatScore(Long employeeId) {
+    public float workFormatScore(UUID employeeId) {
         Employee employee = getEmployee(employeeId);
         WorkSchedule schedule = employee.getWorkSchedule();
 
@@ -396,7 +397,7 @@ public class MetricsService {
         };
     }
 
-    private float calculateOfficeFormatScore(Long employeeId, ZoneId zoneId) {
+    private float calculateOfficeFormatScore(UUID employeeId, ZoneId zoneId) {
         float officeRatio = calculateOfficePresenceRatio(
                 employeeId,
                 zoneId,
@@ -418,7 +419,7 @@ public class MetricsService {
         return NORMAL_SCORE;
     }
 
-    private float calculateRemoteFormatScore(Long employeeId, ZoneId zoneId) {
+    private float calculateRemoteFormatScore(UUID employeeId, ZoneId zoneId) {
         float officeRatio = calculateOfficePresenceRatio(
                 employeeId,
                 zoneId,
@@ -440,7 +441,7 @@ public class MetricsService {
         return NORMAL_SCORE;
     }
 
-    private float calculateHybridFormatScore(Long employeeId, ZoneId zoneId) {
+    private float calculateHybridFormatScore(UUID employeeId, ZoneId zoneId) {
         float officeRatioForRemoteCheck = calculateOfficePresenceRatio(
                 employeeId,
                 zoneId,
@@ -467,7 +468,7 @@ public class MetricsService {
     }
 
     private float calculateOfficePresenceRatio(
-            Long employeeId,
+            UUID employeeId,
             ZoneId zoneId,
             int periodDays
     ) {
@@ -507,7 +508,7 @@ public class MetricsService {
         return (float) officeDays.size() / activeWorkingDays.size();
     }
 
-    private List<WorkEventParticipant> getActiveEmployeeParticipants(Long employeeId) {
+    private List<WorkEventParticipant> getActiveEmployeeParticipants(UUID employeeId) {
         return participantRepository.findByEmployee_Id(employeeId)
                 .stream()
                 .filter(participant -> participant.getEvent() != null)

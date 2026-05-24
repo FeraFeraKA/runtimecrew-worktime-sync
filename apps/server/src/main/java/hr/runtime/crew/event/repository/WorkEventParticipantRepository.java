@@ -1,5 +1,6 @@
 package hr.runtime.crew.event.repository;
 
+import java.util.UUID;
 import hr.runtime.crew.event.model.enums.EventStatus;
 import hr.runtime.crew.event.model.entity.WorkEventParticipant;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -10,12 +11,12 @@ import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 
-public interface WorkEventParticipantRepository extends JpaRepository<WorkEventParticipant, Long> {
+public interface WorkEventParticipantRepository extends JpaRepository<WorkEventParticipant, UUID> {
 
-    List<WorkEventParticipant> findByEvent_Id(Long eventId);
-    List<WorkEventParticipant> findByEmployee_Id(Long employeeId);
+    List<WorkEventParticipant> findByEvent_Id(UUID eventId);
+    List<WorkEventParticipant> findByEmployee_Id(UUID employeeId);
 
-    Optional<WorkEventParticipant> findByEvent_IdAndEmployee_Id(Long eventId, Long employeeId);
+    Optional<WorkEventParticipant> findByEvent_IdAndEmployee_Id(UUID eventId, UUID employeeId);
 
     @Query("""
             select count(participant) > 0
@@ -26,7 +27,7 @@ public interface WorkEventParticipantRepository extends JpaRepository<WorkEventP
               and participant.event.endAt > :timeStart
             """)
     boolean existsOverlappingEvent(
-            @Param("employeeId") Long employeeId,
+            @Param("employeeId") UUID employeeId,
             @Param("timeStart") Instant timeStart,
             @Param("timeEnd") Instant timeEnd,
             @Param("cancelledStatus") EventStatus cancelledStatus

@@ -1,5 +1,6 @@
 package hr.runtime.crew.team;
 
+import java.util.UUID;
 import hr.runtime.crew.team.dto.CreateTeamRequest;
 import hr.runtime.crew.team.dto.TeamResponse;
 import org.springframework.stereotype.Service;
@@ -28,12 +29,12 @@ public class TeamService {
                 .toList();
     }
 
-    public TeamResponse getTeamById(Long teamId) {
+    public TeamResponse getTeamById(UUID teamId) {
         Team team = getTeamEntityById(teamId);
         return toResponse(team);
     }
 
-    public Team getTeamEntityById(Long teamId) {
+    public Team getTeamEntityById(UUID teamId) {
         return teamRepository.findById(teamId)
                 .orElseThrow(() -> new RuntimeException("Team not found"));
     }

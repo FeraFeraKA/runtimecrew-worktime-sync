@@ -1,7 +1,9 @@
 package hr.runtime.crew.employee.service;
 
+import java.util.UUID;
 import hr.runtime.crew.employee.dto.*;
 import hr.runtime.crew.employee.model.entity.Employee;
+import hr.runtime.crew.employee.model.entity.WorkSchedule;
 import hr.runtime.crew.employee.repository.EmployeeRepository;
 import hr.runtime.crew.team.Team;
 import hr.runtime.crew.team.TeamService;
@@ -20,7 +22,7 @@ public class EmployeeService {
         this.teamService = teamService;
     }
 
-    public EmployeeResponse createEmployee(Long teamId, CreateEmployeeRequest request) {
+    public EmployeeResponse createEmployee(UUID teamId, CreateEmployeeRequest request) {
         Team team = teamService.getTeamEntityById(teamId);
         WorkSchedule workSchedule = toWorkSchedule(request.workSchedule());
 
@@ -37,19 +39,19 @@ public class EmployeeService {
         return toResponse(savedEmployee);
     }
 
-    public List<EmployeeResponse> getEmployeesByTeam(Long teamId) {
+    public List<EmployeeResponse> getEmployeesByTeam(UUID teamId) {
         return employeeRepository.findByTeam_Id(teamId)
                 .stream()
                 .map(this::toResponse)
                 .toList();
     }
 
-    public EmployeeResponse getEmployeeById(Long employeeId) {
+    public EmployeeResponse getEmployeeById(UUID employeeId) {
         Employee employee = getEmployeeEntityById(employeeId);
         return toResponse(employee);
     }
 
-    public EmployeeResponse updateEmployee(Long employeeId, UpdateEmployeeRequest request) {
+    public EmployeeResponse updateEmployee(UUID employeeId, UpdateEmployeeRequest request) {
         Employee employee = getEmployeeEntityById(employeeId);
         employee.updateMainInfo(
                 request.fullName(),
@@ -62,7 +64,7 @@ public class EmployeeService {
         return toResponse(savedEmployee);
     }
 
-    public EmployeeResponse updateWorkSchedule(Long employeeId, WorkScheduleRequest request) {
+    public EmployeeResponse updateWorkSchedule(UUID employeeId, WorkScheduleRequest request) {
         Employee employee = getEmployeeEntityById(employeeId);
         employee.updateWorkSchedule(toWorkSchedule(request));
 
@@ -70,7 +72,7 @@ public class EmployeeService {
         return toResponse(savedEmployee);
     }
 
-    public EmployeeResponse confirmWorkSchedule(Long employeeId) {
+    public EmployeeResponse confirmWorkSchedule(UUID employeeId) {
         Employee employee = getEmployeeEntityById(employeeId);
         employee.confirmWorkSchedule();
 
@@ -78,7 +80,7 @@ public class EmployeeService {
         return toResponse(savedEmployee);
     }
 
-    public Employee getEmployeeEntityById(Long employeeId) {
+    public Employee getEmployeeEntityById(UUID employeeId) {
         return employeeRepository.findById(employeeId)
                 .orElseThrow(() -> new RuntimeException("Employee not found"));
     }

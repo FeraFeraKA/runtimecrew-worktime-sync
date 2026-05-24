@@ -1,33 +1,42 @@
 services:
   database:
-    image: postgres:13
-    container_name: postgres
+    image: postgres:16
+    container_name: crew-uuid-postgres
     environment:
       POSTGRES_DB: crew_db
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: crew_user
+      POSTGRES_PASSWORD: crew_password
     ports:
-      - "5432:5432"
+      - "5433:5432"
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - crew_uuid_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U crew_user -d crew_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
     networks:
       - crew-net
 
   backend:
     build: .
-    container_name: backend
+    container_name: crew-uuid-backend
+    depends_on:
+      database:
+        condition: service_healthy
     ports:
       - "8080:8080"
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      SPRING_DATASOURCE_URL: jdbc:postgresql://database:5432/crew_db
+      SPRING_DATASOURCE_USERNAME: crew_user
+      SPRING_DATASOURCE_PASSWORD: crew_password
     networks:
       - crew-net
 
 volumes:
-  postgres_data:
+  crew_uuid_postgres_data:
+    name: crew_uuid_postgres_data
 
 networks:
   crew-net:
     driver: bridge
-

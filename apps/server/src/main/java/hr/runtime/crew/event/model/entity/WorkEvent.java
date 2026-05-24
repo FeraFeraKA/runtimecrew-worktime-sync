@@ -1,9 +1,20 @@
 package hr.runtime.crew.event.model.entity;
 
+import java.util.UUID;
 import hr.runtime.crew.event.model.enums.EventStatus;
 import hr.runtime.crew.event.model.enums.EventType;
 import hr.runtime.crew.team.Team;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
 import java.time.Instant;
 
@@ -12,8 +23,8 @@ import java.time.Instant;
 public class WorkEvent {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "team_id", nullable = false)
@@ -55,7 +66,7 @@ public class WorkEvent {
         this.createdAt = Instant.now();
     }
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
@@ -67,6 +78,10 @@ public class WorkEvent {
         return title;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
     public Instant getStartAt() {
         return startAt;
     }
@@ -75,9 +90,19 @@ public class WorkEvent {
         return endAt;
     }
 
+    public EventType getEventType() {
+        return eventType;
+    }
+
     public EventStatus getStatus() {
         return status;
     }
 
-    public EventType getEventType(){return eventType;}
+    public Instant getCreatedAt() {
+        return createdAt;
+    }
+
+    public void changeStatus(EventStatus status) {
+        this.status = status;
+    }
 }

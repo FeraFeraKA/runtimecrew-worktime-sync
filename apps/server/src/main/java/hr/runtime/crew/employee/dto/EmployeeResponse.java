@@ -1,10 +1,11 @@
 package hr.runtime.crew.employee.dto;
 
 import java.time.Instant;
+import java.util.UUID;
 
 public record EmployeeResponse(
-        Long id,
-        Long teamId,
+        UUID id,
+        UUID teamId,
         String fullName,
         String email,
         String role,

@@ -1,5 +1,6 @@
 package hr.runtime.crew.team;
 
+import java.util.UUID;
 import hr.runtime.crew.team.dto.CreateTeamRequest;
 import hr.runtime.crew.team.dto.TeamResponse;
 import org.springframework.http.HttpStatus;
@@ -35,7 +36,7 @@ public class TeamController {
     }
 
     @GetMapping("/{teamId}")
-    public TeamResponse getTeamById(@PathVariable Long teamId) {
+    public TeamResponse getTeamById(@PathVariable UUID teamId) {
         return teamService.getTeamById(teamId);
     }
 }

@@ -1,5 +1,6 @@
 package hr.runtime.crew.event.service;
 
+import java.util.UUID;
 import hr.runtime.crew.event.model.entity.EventAttendanceLog;
 import hr.runtime.crew.event.model.entity.WorkEventParticipant;
 import hr.runtime.crew.event.model.enums.AttendanceAction;
@@ -26,7 +27,7 @@ public class AttendanceService {
     }
 
     @Transactional
-    public void markPresent(Long eventId, Long employeeId) {
+    public void markPresent(UUID eventId, UUID employeeId) {
         WorkEventParticipant participant = participantRepository
                 .findByEvent_IdAndEmployee_Id(eventId, employeeId)
                 .orElseThrow(() -> new RuntimeException("Employee is not participant of this event"));
@@ -50,7 +51,7 @@ public class AttendanceService {
     }
 
     @Transactional
-    public void markAbsent(Long eventId, Long employeeId) {
+    public void markAbsent(UUID eventId, UUID employeeId) {
         WorkEventParticipant participant = participantRepository
                 .findByEvent_IdAndEmployee_Id(eventId, employeeId)
                 .orElseThrow(() -> new RuntimeException("Employee is not participant of this event"));

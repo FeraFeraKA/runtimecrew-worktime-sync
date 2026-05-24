@@ -1,7 +1,8 @@
 package hr.runtime.crew.event.repository;
 
+import java.util.UUID;
 import hr.runtime.crew.event.model.entity.WorkEvent;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface WorkEventRepository extends JpaRepository<WorkEvent, Long> {
+public interface WorkEventRepository extends JpaRepository<WorkEvent, UUID> {
 }

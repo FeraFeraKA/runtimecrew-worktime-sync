@@ -1,6 +1,5 @@
 package hr.runtime.crew.employee.model.entity;
 
-import hr.runtime.crew.employee.dto.WorkSchedule;
 import hr.runtime.crew.team.Team;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
@@ -16,14 +15,15 @@ import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
 
 import java.time.Instant;
+import java.util.UUID;
 
 @Entity
 @Table(name = "employees")
 public class Employee {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "team_id", nullable = false)
@@ -80,7 +80,7 @@ public class Employee {
         this.updatedAt = Instant.now();
     }
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
