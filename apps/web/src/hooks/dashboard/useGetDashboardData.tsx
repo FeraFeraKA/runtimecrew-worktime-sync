@@ -1,10 +1,13 @@
-import { getDashboardData, type IGetDashboardData } from "@/api/dashboard";
+import {
+  getDashboardData,
+  type GetDashboardDataParams,
+} from "@/api/dashboard";
 import { useQuery } from "@tanstack/react-query";
 
-const useGetDashboardData = (data: IGetDashboardData) => {
+const useGetDashboardData = (data: GetDashboardDataParams) => {
   return useQuery({
-    queryKey: ["dashboardData", data.team.id, data.period.from, data.period.to],
-    queryFn: () => getDashboardData(data),
+    queryKey: ["teams", data.teamId, "dashboard", data.from, data.to],
+    queryFn: ({ signal }) => getDashboardData({ ...data, signal }),
   });
 };
 
