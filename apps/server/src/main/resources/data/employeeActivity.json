@@ -1,0 +1,20 @@
+[
+  {
+    "employeeEmail": "ivan.petrov@example.com",
+    "startAt": "2026-05-18T07:00:00Z",
+    "endAt": "2026-05-18T08:00:00Z",
+    "activityType": "MEETING",
+    "success": 1,
+    "title": "Daily meeting",
+    "description": "Ежедневная командная синхронизация"
+  },
+  {
+    "employeeEmail": "ivan.petrov@example.com",
+    "startAt": "2026-05-18T07:00:00Z",
+    "endAt": "2026-05-18T08:00:00Z",
+    "activityType": "WORKING",
+    "success": 0.7,
+    "title": "Daily meeting",
+    "description": "Ежедневная командная синхронизация"
+  }
+]
