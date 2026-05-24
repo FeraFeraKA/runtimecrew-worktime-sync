@@ -20,7 +20,7 @@ import { NavLink } from "react-router";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 
 const pages = [
-  { title: pageHandles.dashboard.title, path: "/", icon: LayoutDashboard },
+  { title: pageHandles.dashboard.title, path: "/dashboard", icon: LayoutDashboard },
   { title: pageHandles.employees.title, path: "/employees", icon: Users },
   {
     title: pageHandles.employeeProfile.title,
@@ -28,11 +28,15 @@ const pages = [
     icon: User,
   },
   {
-    title: "Доступность команд",
-    path: "/team-availability",
+    title: pageHandles.availability.title,
+    path: "/availability",
     icon: Calendar,
   },
-  { title: "Конфликты", path: "/conflicts", icon: TriangleAlert },
+  {
+    title: pageHandles.conflicts.title,
+    path: "/conflicts",
+    icon: TriangleAlert,
+  },
 ];
 
 const AppSidebar = () => {
@@ -41,7 +45,7 @@ const AppSidebar = () => {
       <SidebarHeader className="px-4">
         <div className="flex items-center">
           <NavLink to="/">
-            <img src="/favicon.svg" alt="Logo" />
+            <img src="/favicon.svg" alt="Логотип" />
           </NavLink>
           <span className="ml-2 text-xl font-semibold">WorkTime Sync</span>
         </div>
