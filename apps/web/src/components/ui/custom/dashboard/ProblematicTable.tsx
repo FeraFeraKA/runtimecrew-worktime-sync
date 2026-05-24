@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn, getEmployeeInitials } from "@/lib/utils";
 import { workFormatMeta } from "@/shared/types/dashboard/dashboard.meta";
 import type { EmployeeDiagnosticSummaryDto } from "@/shared/types/dashboard/dashboard.types";
 import { Avatar, AvatarFallback, AvatarImage } from "../../avatar";
@@ -43,7 +43,9 @@ const ProblematicTable = ({ problematicEmployees }: IProblematicTableProps) => {
                 <TableCell className="flex items-center gap-2">
                   <Avatar>
                     <AvatarImage src={data.employee.avatarUrl} />
-                    <AvatarFallback>CN</AvatarFallback>
+                    <AvatarFallback>
+                      {getEmployeeInitials(data.employee.fullName)}
+                    </AvatarFallback>
                   </Avatar>
                   <span>{data.employee.fullName}</span>
                 </TableCell>

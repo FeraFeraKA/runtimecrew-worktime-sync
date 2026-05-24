@@ -28,8 +28,8 @@ import {
   TableHeader,
   TableRow,
 } from "../../table";
+import FilterSelect from "../FilterSelect";
 import EmployeeActionsDropdown from "./EmployeeActionsDropdown";
-import EmployeeFilterSelect from "./EmployeeFilterSelect";
 
 interface IEmployeesTableProps {
   employees: EmployeeTableRowDto[];
@@ -167,7 +167,7 @@ const EmployeesTable = ({ employees }: IEmployeesTableProps) => {
           </Button>
         </div>
 
-        <EmployeeFilterSelect
+        <FilterSelect
           value={roleFilter}
           label="Роль"
           groupLabel="Роли"
@@ -175,7 +175,7 @@ const EmployeesTable = ({ employees }: IEmployeesTableProps) => {
           onValueChange={(value) => setRoleFilter(value as EmployeeRoleFilter)}
         />
 
-        <EmployeeFilterSelect
+        <FilterSelect
           value={timezoneFilter}
           label="Часовой пояс"
           groupLabel="Часовые пояса"
@@ -183,7 +183,7 @@ const EmployeesTable = ({ employees }: IEmployeesTableProps) => {
           onValueChange={setTimezoneFilter}
         />
 
-        <EmployeeFilterSelect
+        <FilterSelect
           value={statusFilter}
           label="Статус"
           groupLabel="Статусы"
@@ -193,7 +193,7 @@ const EmployeesTable = ({ employees }: IEmployeesTableProps) => {
           }
         />
 
-        <EmployeeFilterSelect
+        <FilterSelect
           value={riskFilter}
           label="Риск"
           groupLabel="Риски"
@@ -311,7 +311,7 @@ const EmployeesTable = ({ employees }: IEmployeesTableProps) => {
                     </Badge>
                   </TableCell>
                   <TableCell>
-                    <EmployeeActionsDropdown />
+                    <EmployeeActionsDropdown employeeId={row.employee.id} />
                   </TableCell>
                 </TableRow>
               );

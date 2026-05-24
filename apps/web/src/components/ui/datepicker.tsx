@@ -1,6 +1,7 @@
 "use client";
 
 import { format } from "date-fns";
+import { ru } from "date-fns/locale";
 import { CalendarIcon } from "lucide-react";
 import { type DateRange } from "react-day-picker";
 
@@ -23,7 +24,7 @@ export function DatePickerWithRange({
   onChange,
 }: IDatePickerWithRangeProps) {
   return (
-    <Field className="mx-auto w-58">
+    <Field className="mx-auto w-full lg:w-58">
       <Popover>
         <PopoverTrigger asChild className="rounded-xs">
           <Button
@@ -35,14 +36,14 @@ export function DatePickerWithRange({
             {value?.from ? (
               value.to ? (
                 <>
-                  {format(value.from, "LLL dd, y")} -{" "}
-                  {format(value.to, "LLL dd, y")}
+                  {format(value.from, "d MMM y", { locale: ru })} -{" "}
+                  {format(value.to, "d MMM y", { locale: ru })}
                 </>
               ) : (
-                format(value.from, "LLL dd, y")
+                format(value.from, "d MMM y", { locale: ru })
               )
             ) : (
-              <span>Pick a date</span>
+              <span>Выберите дату</span>
             )}
           </Button>
         </PopoverTrigger>
@@ -52,6 +53,7 @@ export function DatePickerWithRange({
             selected={value}
             onSelect={onChange}
             numberOfMonths={2}
+            locale={ru}
           />
         </PopoverContent>
       </Popover>

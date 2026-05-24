@@ -1,20 +1,19 @@
 import Dashboard from "@/components/layout/Dashboard";
-import { mockDashboardResponse } from "@/shared/mock/dashboard.mock";
-
-const data = mockDashboardResponse;
+import { QueryErrorState, QueryLoadingState } from "@/components/layout/QueryState";
+import useGetDashboardData from "@/hooks/dashboard/useGetDashboardData";
+import { useTeamPeriodParams } from "@/hooks/useTeamPeriodParams";
 
 const DashboardPage = () => {
-  // TODO: Uncomment when the backend is ready and the API endpoint is working
-  // const { data } = useGetDashboardData({
-  //   team: {
-  //     id: "team-1",
-  //     name: "Team 1",
-  //   },
-  //   period: {
-  //     from: "2024-01-01",
-  //     to: "2024-01-31",
-  //   },
-  // });
+  const params = useTeamPeriodParams();
+  const { data, error, isError, isPending, refetch } = useGetDashboardData(params);
+
+  if (isPending) {
+    return <QueryLoadingState />;
+  }
+
+  if (isError || !data) {
+    return <QueryErrorState error={error} onRetry={() => void refetch()} />;
+  }
 
   return (
     <Dashboard

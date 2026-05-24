@@ -8,8 +8,21 @@ interface IFetcherParams {
 }
 
 interface IErrorData {
-  error: string;
+  error?: string;
+  message?: string;
 }
+
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL?.replace(/\/$/, "") ?? "";
+
+const getRequestUrl = (url: string) => {
+  if (/^https?:\/\//.test(url)) {
+    return url;
+  }
+
+  const path = url.startsWith("/") ? url : `/${url}`;
+
+  return `${API_BASE_URL}${path}`;
+};
 
 export const fetcher = async <T>({
   url,
@@ -17,7 +30,7 @@ export const fetcher = async <T>({
   body = undefined,
   signal,
 }: IFetcherParams): Promise<T> => {
-  const response = await fetch(`http://localhost:5173/${url}`, {
+  const response = await fetch(getRequestUrl(url), {
     method,
     body: body === undefined ? undefined : JSON.stringify(body),
     headers: {
@@ -26,13 +39,16 @@ export const fetcher = async <T>({
     signal,
   });
 
-  const data = await response.json();
+  const text = await response.text();
+  const data = text.length > 0 ? (JSON.parse(text) as unknown) : undefined;
 
   if (!response.ok) {
-    const errorData = data as IErrorData;
+    const errorData = data as IErrorData | undefined;
 
-    throw new Error(errorData.error);
+    throw new Error(
+      errorData?.error ?? errorData?.message ?? "Request failed",
+    );
   }
 
-  return data;
+  return data as T;
 };
