@@ -1,4 +1,3 @@
-import type { EmployeeFilterOption } from "@/shared/types/employees/employees.types";
 import {
   Select,
   SelectContent,
@@ -7,29 +6,38 @@ import {
   SelectLabel,
   SelectTrigger,
   SelectValue,
-} from "../../select";
+} from "../select";
 
-interface IEmployeeFilterSelectProps<TValue extends string> {
+type FilterOption<TValue extends string> = {
+  value: TValue;
+  label: string;
+};
+
+interface IFilterSelectProps<TValue extends string> {
   value: TValue;
   label: string;
   groupLabel: string;
-  options: EmployeeFilterOption<TValue>[];
+  options: FilterOption<TValue>[];
   onValueChange: (value: TValue) => void;
 }
 
-const EmployeeFilterSelect = <TValue extends string>({
+const FilterSelect = <TValue extends string>({
   value,
   label,
   groupLabel,
   options,
   onValueChange,
-}: IEmployeeFilterSelectProps<TValue>) => {
+}: IFilterSelectProps<TValue>) => {
   const selectedOption = options.find((option) => option.value === value);
 
   return (
     <Select value={value} onValueChange={onValueChange}>
       <SelectTrigger className="h-8 w-full rounded-xs bg-background xl:w-60 xl:min-w-20">
-        <SelectValue>{`${label}: ${selectedOption?.label ?? "Все"}`}</SelectValue>
+        <SelectValue>
+          <span className="block min-w-0 truncate">
+            {`${label}: ${selectedOption?.label ?? "Все"}`}
+          </span>
+        </SelectValue>
       </SelectTrigger>
       <SelectContent className="rounded-xs">
         <SelectGroup>
@@ -45,4 +53,4 @@ const EmployeeFilterSelect = <TValue extends string>({
   );
 };
 
-export default EmployeeFilterSelect;
+export default FilterSelect;

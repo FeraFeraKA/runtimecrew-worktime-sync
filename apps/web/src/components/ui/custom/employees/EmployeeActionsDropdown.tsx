@@ -1,4 +1,5 @@
 import { EllipsisVertical } from "lucide-react";
+import { useNavigate } from "react-router";
 import { Button } from "../../button";
 import {
   DropdownMenu,
@@ -16,7 +17,13 @@ const employeeActionItems = [
   "Посмотреть конфликты",
 ];
 
-const EmployeeActionsDropdown = () => {
+interface IEmployeeActionsDropdownProps {
+  employeeId: string;
+}
+
+const EmployeeActionsDropdown = ({ employeeId }: IEmployeeActionsDropdownProps) => {
+  const navigate = useNavigate();
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild className="flex items-center justify-center">
@@ -39,6 +46,11 @@ const EmployeeActionsDropdown = () => {
           <DropdownMenuItem
             key={action}
             className="rounded-xs px-0 py-1.5 whitespace-normal"
+            onSelect={() => {
+              if (action === "Профиль") {
+                navigate(`/employees/${employeeId}/profile`);
+              }
+            }}
           >
             {action}
           </DropdownMenuItem>

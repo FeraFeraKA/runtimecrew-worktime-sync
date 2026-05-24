@@ -1,20 +1,11 @@
-import type {
-  DashboardResponse,
-  PeriodDto,
-  TeamDto,
-} from "@/shared/types/dashboard/dashboard.types";
-import { fetcher } from "./fetcher";
+import type { DashboardResponse } from "@/shared/types/dashboard/dashboard.types";
+import { mockDashboardResponse } from "@/shared/mock/dashboard.mock";
+import type { TeamPeriodRequestParams } from "./team-period.types";
 
-export interface IGetDashboardData {
-  team: TeamDto;
-  period: PeriodDto;
-}
+export type GetDashboardDataParams = TeamPeriodRequestParams;
 
-export function getDashboardData({ team, period }: IGetDashboardData) {
-  const dashboardData = fetcher<DashboardResponse>({
-    url: `dashboard?teamId=${team.id}&from=${period.from}&to=${period.to}`,
-    method: "GET",
-  });
-
-  return dashboardData;
+export async function getDashboardData(
+  _params: GetDashboardDataParams,
+): Promise<DashboardResponse> {
+  return mockDashboardResponse;
 }

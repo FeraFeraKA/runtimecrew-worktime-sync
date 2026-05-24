@@ -1,14 +1,22 @@
 import { Outlet } from "react-router";
 
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import { DEFAULT_PERIOD, DEFAULT_TEAM_ID } from "@/shared/config/defaults";
 import { useState } from "react";
 import { type DateRange } from "react-day-picker";
 import Header from "./components/layout/Header";
 import AppSidebar from "./components/layout/Sidebar";
 
+const defaultPeriod: DateRange = {
+  from: new Date(DEFAULT_PERIOD.from),
+  to: new Date(DEFAULT_PERIOD.to),
+};
+
 const AppLayout = () => {
-  const [currentTeam, setCurrentTeam] = useState<string | null>(null);
-  const [period, setPeriod] = useState<DateRange | undefined>();
+  const [currentTeam, setCurrentTeam] = useState<string | null>(
+    DEFAULT_TEAM_ID,
+  );
+  const [period, setPeriod] = useState<DateRange | undefined>(defaultPeriod);
 
   const handleCurrentTeamChange = (team: string) => {
     setCurrentTeam(team);
