@@ -1,3 +1,7 @@
+import {
+  DEFAULT_PERIOD,
+  SELECTED_PERIOD_CHANGE_LABEL,
+} from "../config/defaults";
 import type { DashboardResponse } from "../types/dashboard/dashboard.types";
 
 export const mockDashboardResponse: DashboardResponse = {
@@ -7,8 +11,8 @@ export const mockDashboardResponse: DashboardResponse = {
   },
 
   period: {
-    from: "2026-05-01",
-    to: "2026-05-14",
+    from: DEFAULT_PERIOD.from,
+    to: DEFAULT_PERIOD.to,
   },
 
   kpis: [
@@ -18,7 +22,7 @@ export const mockDashboardResponse: DashboardResponse = {
       value: 69,
       unit: "%",
       changePercent: 6,
-      changeLabel: "по ср. с 17 Мая – 30 Мая",
+      changeLabel: SELECTED_PERIOD_CHANGE_LABEL,
     },
     {
       key: "averageRiskScore",
@@ -26,35 +30,35 @@ export const mockDashboardResponse: DashboardResponse = {
       value: 64,
       unit: "%",
       changePercent: -4,
-      changeLabel: "по ср. с 17 Мая – 30 Мая",
+      changeLabel: SELECTED_PERIOD_CHANGE_LABEL,
     },
     {
       key: "highRiskEmployeesCount",
       title: "Высокий риск",
       value: 5,
       changePercent: 2,
-      changeLabel: "по ср. с 17 Мая – 30 Мая",
+      changeLabel: SELECTED_PERIOD_CHANGE_LABEL,
     },
     {
       key: "conflictsCount",
       title: "Конфликты",
       value: 18,
       changePercent: -3,
-      changeLabel: "по ср. с 17 Мая – 30 Мая",
+      changeLabel: SELECTED_PERIOD_CHANGE_LABEL,
     },
     {
       key: "overloadedEmployeesCount",
       title: "Перегруженные сотрудники",
       value: 3,
       changePercent: 1,
-      changeLabel: "по ср. с 17 Мая – 30 Мая",
+      changeLabel: SELECTED_PERIOD_CHANGE_LABEL,
     },
     {
       key: "timezoneConflictsCount",
       title: "Конфликты часовых поясов",
       value: 2,
       changePercent: 0,
-      changeLabel: "по ср. с 17 Мая – 30 Мая",
+      changeLabel: SELECTED_PERIOD_CHANGE_LABEL,
     },
   ],
 
@@ -127,7 +131,7 @@ export const mockDashboardResponse: DashboardResponse = {
         avatarUrl: "/avatars/alexey-morozov.png",
       },
       role: "qa_engineer",
-      roleLabel: "QA-инженер",
+      roleLabel: "Инженер по тестированию",
       timezone: "Asia/Vladivostok",
       timezoneLabel: "UTC +10",
       workFormat: "remote",
@@ -151,7 +155,7 @@ export const mockDashboardResponse: DashboardResponse = {
         avatarUrl: "/avatars/ekaterina-lebedeva.png",
       },
       role: "product_manager",
-      roleLabel: "Product Manager",
+      roleLabel: "Продакт-менеджер",
       timezone: "Europe/Moscow",
       timezoneLabel: "UTC +3",
       workFormat: "office",
@@ -161,7 +165,7 @@ export const mockDashboardResponse: DashboardResponse = {
       severity: "high",
       severityLabel: "Высокий",
       mainReason: "Перегрузка встречами в рабочие дни",
-      recommendedAction: "Забронировать focus time в календаре",
+      recommendedAction: "Забронировать время для фокусной работы",
       daysSinceLastUpdate: 5,
       conflictsCount: 3,
       loadRate: 0.94,
@@ -175,7 +179,7 @@ export const mockDashboardResponse: DashboardResponse = {
         avatarUrl: "/avatars/dmitry-volkov.png",
       },
       role: "devops_engineer",
-      roleLabel: "DevOps-инженер",
+      roleLabel: "Инженер инфраструктуры",
       timezone: "Europe/Samara",
       timezoneLabel: "UTC +4",
       workFormat: "remote",
@@ -199,7 +203,7 @@ export const mockDashboardResponse: DashboardResponse = {
         avatarUrl: "/avatars/anna-kuznetsova.png",
       },
       role: "ui_ux_designer",
-      roleLabel: "UX/UI-дизайнер",
+      roleLabel: "Дизайнер интерфейсов",
       timezone: "Europe/Moscow",
       timezoneLabel: "UTC +3",
       workFormat: "hybrid",
@@ -279,9 +283,9 @@ export const mockDashboardResponse: DashboardResponse = {
       title: "Сместить командные встречи",
       description:
         "Часть сотрудников находится в другом часовом поясе, из-за чего встречи попадают вне рабочего времени.",
-      reason: "У Алексея Морозова регулярные timezone-конфликты.",
+      reason: "У Алексея Морозова регулярные конфликты часового пояса.",
       evidence: [
-        "4 timezone-конфликта за период",
+        "4 конфликта часового пояса за период",
         "Командные встречи часто стоят после 18:00 по локальному времени сотрудника",
       ],
       target: {
@@ -302,17 +306,17 @@ export const mockDashboardResponse: DashboardResponse = {
       id: "cc19d57e-d7a8-42cc-bd80-44e2569c7e1f",
       priority: "high",
       priorityLabel: "Высокий",
-      title: "Добавить focus time для Екатерины",
+      title: "Добавить фокусное время для Екатерины",
       description:
         "Высокая плотность встреч снижает доступность сотрудника для глубокой работы.",
       reason: "Нагрузка Екатерины достигает 94% в выбранном периоде.",
-      evidence: ["Load rate: 0.94", "3 дня подряд с высокой плотностью встреч"],
+      evidence: ["Нагрузка: 94%", "3 дня подряд с высокой плотностью встреч"],
       target: {
         type: "employee",
         typeLabel: "Сотрудник",
         employeeId: "50f8717d-fc8e-41dd-8d32-4d6a0f3c7f94",
       },
-      suggestedActionLabel: "Добавить focus time",
+      suggestedActionLabel: "Добавить фокусное время",
       expectedEffect: {
         actualityScoreDelta: 4,
         riskScoreDelta: -9,
